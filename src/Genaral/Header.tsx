@@ -6,12 +6,23 @@ import { address, company_name, phone_number } from "./secrete";
 const Header = () => {
   return (
     <header
-      className="w-full top-0 
-      bg-gradient-to-r 
-      from-stone-950 via-amber-900 to-orange-950
-      border-b border-white/10 backdrop-blur-xl shadow-lg shadow-black/25"
+      className="w-full "
+      style={{
+        background:
+          "linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #0a0a0a 100%)",
+        borderBottom: "1px solid rgba(212,175,55,0.2)",
+        boxShadow: "0 4px 40px rgba(212,175,55,0.08)",
+      }}
     >
-      <div className="w-full md:w-[90%] mx-auto px-4 py-4 md:py-5 flex items-center">
+      {/* Top accent line */}
+      <div
+        style={{
+          height: "2px",
+          background:
+            "linear-gradient(90deg, transparent, #d4af37, #f5e27a, #d4af37, transparent)",
+        }}
+      />
+      <div className="w-full md:w-[92%] mx-auto px-4 py-3 md:py-4">
         <Logo />
       </div>
     </header>
@@ -20,75 +31,234 @@ const Header = () => {
 
 export default Header;
 
-const Logo = () => (
-  <header className="w-full px-4 py-4 md:px-10 md:py-6">
-    <div className="flex items-center justify-between">
-      {/* Logo + Info */}
-      <div className="flex items-start gap-4 md:gap-6">
-        {/* Logo Image */}
+const Logo = () => {
+  const [imgHovered, setImgHovered] = useState(false);
+
+  return (
+    <div className="flex items-center justify-between w-full">
+      {/* Left: Logo + Info */}
+      <div className="flex items-center gap-5 md:gap-7">
+        {/* Logo with ornate border */}
         <div
-          className="w-14 h-14 md:w-20 md:h-20 rounded-2xl overflow-hidden 
-          border border-yellow-400 shadow-lg"
+          onMouseEnter={() => setImgHovered(true)}
+          onMouseLeave={() => setImgHovered(false)}
+          style={{
+            position: "relative",
+            width: "68px",
+            height: "68px",
+            flexShrink: 0,
+          }}
         >
-          <img
-            src="https://i.pinimg.com/1200x/67/24/c1/6724c1236dfb7f5f96e422ef92cb6fd2.jpg"
-            alt={`${company_name} Logo`}
-            className="w-full h-full object-cover hover:scale-110 transition duration-500"
+          {/* Rotating ring */}
+          <div
+            style={{
+              position: "absolute",
+              inset: "-4px",
+              borderRadius: "50%",
+              background:
+                "conic-gradient(from 0deg, #d4af37, #f5e27a, #d4af37, #8b6914, #d4af37)",
+              animation: "spin 8s linear infinite",
+              opacity: imgHovered ? 1 : 0.6,
+              transition: "opacity 0.3s ease",
+            }}
           />
+          <div
+            style={{
+              position: "absolute",
+              inset: "2px",
+              borderRadius: "50%",
+              background: "#0a0a0a",
+            }}
+          />
+          <div
+            style={{
+              position: "absolute",
+              inset: "4px",
+              borderRadius: "50%",
+              overflow: "hidden",
+            }}
+          >
+            <img
+              src="https://i.pinimg.com/1200x/19/6b/2d/196b2d46fb8864dfb588c18655d4a3f1.jpg"
+              alt={`${company_name} Logo`}
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                transform: imgHovered ? "scale(1.12)" : "scale(1)",
+                transition: "transform 0.5s ease",
+              }}
+            />
+          </div>
         </div>
 
-        {/* Text */}
-        <div className="flex flex-col">
+        {/* Text block */}
+        <div style={{ display: "flex", flexDirection: "column", gap: "2px" }}>
+          {/* Company name */}
           <h1
-            className="open-sans font-extrabold text-3xl md:text-4xl 
-            text-white tracking-wide"
+            style={{
+              fontFamily: "'Playfair Display', 'Georgia', serif",
+              fontWeight: 800,
+              fontSize: "clamp(1.4rem, 3vw, 2rem)",
+              color: "#fff",
+              letterSpacing: "0.04em",
+              lineHeight: 1.1,
+              textShadow: "0 0 30px rgba(212,175,55,0.3)",
+            }}
           >
             {company_name}
           </h1>
 
-          <p className="text-xs md:text-sm text-yellow-300 italic">Est. 1950</p>
+          {/* Est. badge */}
+          <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+            <div
+              style={{
+                height: "1px",
+                width: "24px",
+                background: "linear-gradient(90deg, transparent, #d4af37)",
+              }}
+            />
+            <span
+              style={{
+                fontFamily: "'Cormorant Garamond', 'Georgia', serif",
+                fontSize: "0.7rem",
+                color: "#d4af37",
+                letterSpacing: "0.18em",
+                textTransform: "uppercase",
+                fontStyle: "italic",
+              }}
+            >
+              Est. 1950
+            </span>
+            <div
+              style={{
+                height: "1px",
+                width: "24px",
+                background: "linear-gradient(90deg, #d4af37, transparent)",
+              }}
+            />
+          </div>
 
-          <p className="roboto text-xl md:text-sm text-gray-200 mt-2 leading-relaxed max-w-[360px]">
-            <b>{address.line1}</b>, {address.line2}
+          {/* Address — hidden on very small screens */}
+          <p
+            style={{
+              fontFamily: "'DM Sans', 'Helvetica Neue', sans-serif",
+              fontSize: "clamp(0.65rem, 1.2vw, 0.78rem)",
+              color: "rgba(220,220,220,0.75)",
+              marginTop: "4px",
+              lineHeight: 1.6,
+              maxWidth: "360px",
+            }}
+            className="hidden sm:block"
+          >
+            <span style={{ color: "rgba(255,255,255,0.9)", fontWeight: 500 }}>
+              {address.line1}
+            </span>
+            {", "}
+            {address.line2}
             <br />
             {address.District}, {address.state} – {address.pincode},{" "}
             {address.country}
             <br />
-            <span className="text-yellow-400 font-semibold">
+            <span
+              style={{
+                color: "#d4af37",
+                fontWeight: 600,
+                letterSpacing: "0.03em",
+              }}
+            >
               📞 +91 {phone_number}
             </span>
           </p>
         </div>
       </div>
 
-      {/* Menu */}
+      {/* Right: Menu */}
       <Menu />
+
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Cormorant+Garamond:ital,wght@1,400&family=DM+Sans:wght@400;500&family=Outfit:wght@400;500;600&display=swap');
+        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        @keyframes slideDown { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
+      `}</style>
     </div>
-  </header>
-);
+  );
+};
 
 const Menu = () => {
   const [open, setOpen] = useState(false);
+
   return (
     <div>
-      {/* Desktop menu */}
-      <ul className="hidden lg:flex gap-8 font-medium text-gray-100 montserrat text-lg">
-        <NavLink to="/">Home</NavLink>
-        <NavLink to="/about">About</NavLink>
-        <NavLink to="/services">Services</NavLink>
-        <NavLink to="/contact">Contact</NavLink>
+      {/* Desktop nav */}
+      <ul className="hidden lg:flex items-center gap-1">
+        {["Home", "About", "Services", "Contact"].map((item, i) => (
+          <NavLink
+            key={item}
+            to={item === "Home" ? "/" : `/${item.toLowerCase()}`}
+            delay={i * 0.05}
+          >
+            {item}
+          </NavLink>
+        ))}
+
+        {/* CTA Button */}
+        <li style={{ marginLeft: "16px" }}>
+          <Link
+            to="/contact"
+            style={{
+              fontFamily: "'Outfit', sans-serif",
+              fontSize: "0.82rem",
+              fontWeight: 600,
+              letterSpacing: "0.08em",
+              textTransform: "uppercase",
+              color: "#0a0a0a",
+              background: "linear-gradient(135deg, #d4af37, #f5e27a)",
+              padding: "9px 22px",
+              borderRadius: "4px",
+              textDecoration: "none",
+              boxShadow: "0 2px 16px rgba(212,175,55,0.35)",
+              transition: "all 0.25s ease",
+              display: "inline-block",
+            }}
+            onMouseEnter={(e) => {
+              (e.target as HTMLElement).style.boxShadow =
+                "0 4px 24px rgba(212,175,55,0.55)";
+              (e.target as HTMLElement).style.transform = "translateY(-1px)";
+            }}
+            onMouseLeave={(e) => {
+              (e.target as HTMLElement).style.boxShadow =
+                "0 2px 16px rgba(212,175,55,0.35)";
+              (e.target as HTMLElement).style.transform = "translateY(0)";
+            }}
+          >
+            Get in Touch
+          </Link>
+        </li>
       </ul>
 
-      {/* Mobile menu button */}
+      {/* Mobile menu toggle */}
       <button
-        className="lg:hidden p-2 border rounded bg-orange-500 transition duration-300"
+        className="lg:hidden"
         onClick={() => setOpen(!open)}
-        aria-label="Open navigation menu"
+        aria-label="Toggle menu"
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          width: "42px",
+          height: "42px",
+          borderRadius: "8px",
+          border: "1px solid rgba(212,175,55,0.4)",
+          background: "rgba(212,175,55,0.08)",
+          cursor: "pointer",
+          transition: "all 0.2s ease",
+        }}
       >
-        <MenuIcon className="w-6 h-6 text-white" strokeWidth={2} />
+        <MenuIcon size={20} color="#d4af37" strokeWidth={2} />
       </button>
 
-      <div className="bg-black">{open && <MobileMenu setOpen={setOpen} />}</div>
+      {open && <MobileMenu setOpen={setOpen} />}
     </div>
   );
 };
@@ -99,58 +269,193 @@ const NavLink = ({
 }: {
   to: string;
   children: React.ReactNode;
-}) => (
-  <Link to={to} className="relative group cursor-pointer">
-    <span className="transition-colors duration-300 group-hover:text-yellow-400">
-      {children}
-    </span>
-    <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-yellow-400 transition-all duration-300 group-hover:w-full"></span>
-  </Link>
-);
+  delay?: number;
+}) => {
+  const [hovered, setHovered] = useState(false);
+
+  return (
+    <li style={{ listStyle: "none" }}>
+      <Link
+        to={to}
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+        style={{
+          fontFamily: "'Outfit', sans-serif",
+          fontSize: "0.88rem",
+          fontWeight: 500,
+          letterSpacing: "0.06em",
+          textTransform: "uppercase",
+          color: hovered ? "#d4af37" : "rgba(255,255,255,0.8)",
+          textDecoration: "none",
+          padding: "8px 14px",
+          borderRadius: "4px",
+          position: "relative",
+          transition: "color 0.25s ease",
+          display: "block",
+        }}
+      >
+        {children}
+        {/* Underline */}
+        <span
+          style={{
+            position: "absolute",
+            bottom: "4px",
+            left: "14px",
+            right: "14px",
+            height: "1px",
+            background: "linear-gradient(90deg, #d4af37, #f5e27a)",
+            transform: hovered ? "scaleX(1)" : "scaleX(0)",
+            transformOrigin: "left",
+            transition: "transform 0.3s ease",
+          }}
+        />
+      </Link>
+    </li>
+  );
+};
 
 const MobileMenu = ({ setOpen }: { setOpen: (open: boolean) => void }) => {
   return (
     <div
-      className="fixed inset-0 z-[999999]
-        bg-gradient-to-b from-stone-950 via-amber-900 to-orange-950
-      px-6 py-8 h-screen flex flex-col
-      backdrop-blur-xl"
+      style={{
+        position: "fixed",
+        inset: 0,
+        zIndex: 999999,
+        background:
+          "linear-gradient(160deg, #0a0a0a 0%, #1a1a2e 60%, #0f0f0f 100%)",
+        display: "flex",
+        flexDirection: "column",
+        padding: "28px 24px",
+        animation: "slideDown 0.3s ease",
+      }}
     >
-      {/* Top Bar */}
-      <div className="flex items-center justify-between border-b border-white/10 pb-4">
-        <h1 className="text-xl font-bold tracking-wide text-amber-300">
+      {/* Top bar */}
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          borderBottom: "1px solid rgba(212,175,55,0.2)",
+          paddingBottom: "20px",
+          marginBottom: "8px",
+        }}
+      >
+        <span
+          style={{
+            fontFamily: "'Playfair Display', serif",
+            fontSize: "1.3rem",
+            fontWeight: 700,
+            color: "#d4af37",
+            letterSpacing: "0.05em",
+          }}
+        >
           {company_name}
-        </h1>
-
+        </span>
         <button
           onClick={() => setOpen(false)}
-          aria-label="Close navigation menu"
-          className="p-2.5 rounded-full 
-          bg-white/10 hover:bg-white/20 
-          transition-all duration-300"
+          aria-label="Close menu"
+          style={{
+            width: "40px",
+            height: "40px",
+            borderRadius: "50%",
+            border: "1px solid rgba(212,175,55,0.3)",
+            background: "rgba(212,175,55,0.08)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            cursor: "pointer",
+          }}
         >
-          <X className="w-6 h-6 text-amber-300" />
+          <X size={18} color="#d4af37" />
         </button>
       </div>
 
-      {/* Nav Links */}
-      <ul className="flex flex-col gap-4 mt-8 text-emerald-100 text-[17px] font-medium tracking-wide">
+      {/* Links */}
+      <ul
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "4px",
+          marginTop: "16px",
+          padding: 0,
+          listStyle: "none",
+        }}
+      >
         {["Home", "About", "Services", "Testimonials", "Contact"].map(
-          (item) => (
-            <Link
-              key={item}
-              to={item === "Home" ? "/" : `/${item.toLowerCase()}`}
-              onClick={() => setOpen(false)}
-              className="py-3 px-5 rounded-2xl
-              bg-white/15
-              hover:bg-white/10 hover:text-amber-300
-              transition-all duration-300"
-            >
-              {item}
-            </Link>
+          (item, i) => (
+            <li key={item} style={{ animationDelay: `${i * 0.06}s` }}>
+              <Link
+                to={item === "Home" ? "/" : `/${item.toLowerCase()}`}
+                onClick={() => setOpen(false)}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  padding: "16px 20px",
+                  borderRadius: "8px",
+                  border: "1px solid rgba(212,175,55,0.08)",
+                  background: "rgba(255,255,255,0.03)",
+                  color: "rgba(255,255,255,0.88)",
+                  fontFamily: "'Outfit', sans-serif",
+                  fontSize: "1rem",
+                  fontWeight: 500,
+                  letterSpacing: "0.05em",
+                  textDecoration: "none",
+                  transition: "all 0.2s ease",
+                }}
+                onMouseEnter={(e) => {
+                  const el = e.currentTarget as HTMLElement;
+                  el.style.background = "rgba(212,175,55,0.1)";
+                  el.style.color = "#d4af37";
+                  el.style.borderColor = "rgba(212,175,55,0.3)";
+                }}
+                onMouseLeave={(e) => {
+                  const el = e.currentTarget as HTMLElement;
+                  el.style.background = "rgba(255,255,255,0.03)";
+                  el.style.color = "rgba(255,255,255,0.88)";
+                  el.style.borderColor = "rgba(212,175,55,0.08)";
+                }}
+              >
+                {item}
+                <span
+                  style={{ color: "#d4af37", fontSize: "1.1rem", opacity: 0.6 }}
+                >
+                  ›
+                </span>
+              </Link>
+            </li>
           ),
         )}
       </ul>
+
+      {/* Bottom address */}
+      <div
+        style={{
+          marginTop: "auto",
+          padding: "20px",
+          borderRadius: "8px",
+          border: "1px solid rgba(212,175,55,0.15)",
+          background: "rgba(212,175,55,0.04)",
+        }}
+      >
+        <p
+          style={{
+            fontFamily: "'DM Sans', sans-serif",
+            fontSize: "0.78rem",
+            color: "rgba(220,220,220,0.6)",
+            lineHeight: 1.7,
+            margin: 0,
+          }}
+        >
+          {address.line1}, {address.line2}
+          <br />
+          {address.District}, {address.state} – {address.pincode}
+          <br />
+          <span style={{ color: "#d4af37", fontWeight: 600 }}>
+            📞 +91 {phone_number}
+          </span>
+        </p>
+      </div>
     </div>
   );
 };

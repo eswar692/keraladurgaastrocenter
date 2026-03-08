@@ -19,7 +19,7 @@ import ImageView from "../Genaral/VideoView";
 
 const Home = () => {
   return (
-    <div className="flex flex-col w-full h-full">
+    <div className="flex flex-col w-full h-full bg-slate-950">
       <ImageView />
       <Problems />
       <AboutAstrologer />
@@ -34,6 +34,7 @@ const Home = () => {
 
 export default Home;
 
+/* ── Problems / Service Cards ── */
 const Problems = () => {
   const problems = [
     {
@@ -89,134 +90,148 @@ const Problems = () => {
   ];
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto px-4">
-      {problems.map((item, index) => (
-        <div
-          key={index}
-          className="group bg-gradient-to-b from-emerald-950 to-teal-950
-          border border-white/10 rounded-2xl overflow-hidden
-          shadow-lg shadow-black/30
-          hover:shadow-xl hover:shadow-black/40 transition-all duration-300"
-        >
-          <div className="overflow-hidden">
-            <img
-              src={item.img}
-              alt={item.title}
-              className="w-full h-56 object-cover
-              group-hover:scale-105 transition-transform duration-500"
-            />
-          </div>
-          <div className="p-6 text-center">
-            <h3 className="text-xl font-serif font-semibold text-amber-300 tracking-wide">
-              {item.title}
-            </h3>
-            <p className="text-sm text-emerald-100/90 mt-3 leading-relaxed">
-              {item.desc}
-            </p>
-            <a
-              href={`https://wa.me/${whatsapp_number}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block mt-6"
-              aria-label={`WhatsApp us about ${item.title}`}
-            >
-              <button
-                className="bg-gradient-to-r from-emerald-600 to-teal-600
-                text-white px-6 py-2.5 rounded-full text-sm font-medium
-                shadow-md shadow-black/30
-                hover:from-emerald-500 hover:to-teal-500
-                transition-all duration-300"
-              >
-                Message Us
-              </button>
-            </a>
-          </div>
+    <section className="py-20 px-4 bg-gradient-to-b from-slate-950 to-zinc-900">
+      {/* Section header */}
+      <div className="max-w-6xl mx-auto text-center mb-14">
+        <span className="text-[10px] font-semibold tracking-[0.22em] uppercase text-yellow-500">
+          How We Help
+        </span>
+        <div className="flex items-center justify-center gap-3 mt-2">
+          <div className="w-12 h-px bg-gradient-to-r from-transparent to-yellow-500" />
+          <h2 className="font-serif text-3xl md:text-4xl font-bold text-white tracking-wide">
+            Areas of Consultation
+          </h2>
+          <div className="w-12 h-px bg-gradient-to-l from-transparent to-yellow-500" />
         </div>
-      ))}
-    </div>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        {problems.map((item, index) => (
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: (index % 3) * 0.1 }}
+            viewport={{ once: true }}
+            className="group bg-zinc-900 border border-white/5 rounded-2xl overflow-hidden
+            shadow-lg shadow-black/40
+            hover:border-yellow-500/20 hover:shadow-yellow-500/5
+            transition-all duration-300"
+          >
+            <div className="overflow-hidden relative">
+              <img
+                src={item.img}
+                alt={item.title}
+                className="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-zinc-900/80 to-transparent" />
+            </div>
+            <div className="p-6 text-center">
+              <h3 className="font-serif text-lg font-semibold text-yellow-400 tracking-wide">
+                {item.title}
+              </h3>
+              <p className="text-sm text-zinc-400 mt-3 leading-relaxed font-light">
+                {item.desc}
+              </p>
+              <a
+                href={`https://wa.me/${whatsapp_number}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 mt-6
+                px-6 py-2.5 rounded-md text-sm font-semibold
+                bg-gradient-to-r from-yellow-500 to-yellow-400
+                text-black shadow-md shadow-yellow-500/20
+                hover:shadow-yellow-500/40 hover:-translate-y-0.5
+                transition-all duration-200"
+                aria-label={`WhatsApp us about ${item.title}`}
+              >
+                <MessageCircle size={14} /> Message Us
+              </a>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+    </section>
   );
 };
 
+/* ── About Astrologer ── */
 const AboutAstrologer = () => {
   return (
-    <section
-      className="relative py-20 px-6 
-      bg-gradient-to-b from-emerald-50 via-stone-50 to-amber-50 
-      overflow-hidden"
-    >
-      <div className="absolute -top-32 -left-32 w-96 h-96 bg-emerald-300/20 rounded-full blur-3xl pointer-events-none"></div>
-      <div className="absolute -bottom-32 -right-32 w-96 h-96 bg-amber-300/20 rounded-full blur-3xl pointer-events-none"></div>
+    <section className="relative py-24 px-6 bg-zinc-900 overflow-hidden">
+      {/* Dot grid */}
+      <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#d4af37_1px,transparent_1px)] [background-size:32px_32px] pointer-events-none" />
+      <div className="absolute -top-24 -left-24 w-96 h-96 bg-yellow-600/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-indigo-600/5 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-14 items-center relative z-10">
-        <div className="space-y-6 md:pr-6 text-center md:text-left">
-          <button
-            className="bg-gradient-to-r from-emerald-600 to-teal-600 
-            text-white px-6 py-2.5 rounded-full text-sm font-medium 
-            tracking-wide shadow-md hover:opacity-90 transition"
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center relative z-10">
+        {/* Text */}
+        <div className="space-y-6 text-center md:text-left">
+          <span
+            className="inline-flex items-center gap-2 px-5 py-2 rounded-full
+            bg-yellow-500/10 border border-yellow-500/20
+            text-yellow-400 text-xs font-semibold tracking-widest uppercase"
           >
             ✨ About {company_name}
-          </button>
+          </span>
 
-          <h2 className="text-4xl md:text-5xl font-serif font-bold text-amber-700 tracking-wide">
+          <h2 className="font-serif text-4xl md:text-5xl font-bold text-white tracking-wide leading-tight">
             {company_name}
           </h2>
+          <div className="w-14 h-px bg-gradient-to-r from-yellow-500 to-transparent mx-auto md:mx-0" />
 
-          <p className="text-stone-800 leading-relaxed text-lg font-light">
+          <p className="text-zinc-400 leading-relaxed text-base font-light">
             Meet{" "}
-            <span className="font-semibold text-emerald-700">
-              {company_name}
-            </span>
-            , a trusted practitioner whose knowledge is rooted in traditional
-            Kerala wisdom. His guidance has helped many individuals discover{" "}
-            <span className="font-medium text-amber-700">
+            <span className="font-semibold text-white">{company_name}</span>, a
+            trusted practitioner whose knowledge is rooted in traditional Kerala
+            wisdom. His guidance has helped many individuals discover{" "}
+            <span className="font-medium text-yellow-400">
               clarity, balance, and confidence
             </span>
             .
           </p>
 
-          <p className="text-stone-700 leading-relaxed text-lg font-light">
+          <p className="text-zinc-400 leading-relaxed text-base font-light">
             Through personalized consultations and thoughtful insights,{" "}
             {company_name} supports people in navigating life decisions with
             calmness, awareness, and grounded understanding.
           </p>
 
-          <div className="mt-8 flex flex-wrap gap-4 justify-center md:justify-start">
+          <div className="flex flex-wrap gap-4 justify-center md:justify-start pt-2">
             <a
               href={`tel:${phone_number}`}
-              className="flex items-center gap-2 
-              bg-gradient-to-r from-amber-500 to-orange-500 
-              text-black px-6 py-3 rounded-full font-semibold 
-              shadow-md hover:from-amber-400 hover:to-orange-400 
-              transition-all"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-md font-semibold text-sm
+              bg-gradient-to-r from-yellow-500 to-yellow-400 text-black
+              shadow-lg shadow-yellow-500/20 hover:shadow-yellow-500/40 hover:-translate-y-0.5
+              transition-all duration-200"
             >
-              Call Now
+              <Phone size={16} /> Call Now
             </a>
-
             <a
               href={`https://wa.me/${whatsapp_number}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 
-              bg-gradient-to-r from-emerald-600 to-teal-600 
-              text-white px-6 py-3 rounded-full font-semibold 
-              shadow-md hover:from-emerald-500 hover:to-teal-500 
-              transition-all"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-md font-semibold text-sm
+              bg-white/5 border border-white/10 text-white
+              hover:bg-white/10 hover:border-yellow-500/30 hover:-translate-y-0.5
+              transition-all duration-200"
             >
-              Chat Now
+              <MessageCircle size={16} /> Chat Now
             </a>
           </div>
         </div>
 
-        <div className="flex justify-center relative">
+        {/* Image */}
+        <div className="flex justify-center">
           <div className="relative w-full max-w-md">
+            <div className="absolute -inset-1 rounded-2xl bg-gradient-to-br from-yellow-500/30 to-transparent blur-xl opacity-60" />
             <img
               src="https://i.pinimg.com/1200x/a2/2e/34/a22e34ab3f1765939a7825677df5861f.jpg"
               alt={`${company_name} practitioner`}
-              className="w-full h-[420px] rounded-3xl object-cover object-top
-              shadow-xl transition-transform duration-500 hover:scale-105"
+              className="relative w-full h-[420px] rounded-2xl object-cover object-top
+              border border-white/10 shadow-2xl
+              hover:scale-[1.02] transition-transform duration-500"
             />
-            <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-amber-300/30 blur-3xl rounded-full"></div>
-            <div className="absolute -top-6 -left-6 w-24 h-24 bg-emerald-300/30 blur-3xl rounded-full"></div>
           </div>
         </div>
       </div>
@@ -224,6 +239,7 @@ const AboutAstrologer = () => {
   );
 };
 
+/* ── Consultation Services ── */
 const AstrologyServices = () => {
   const services = [
     {
@@ -249,63 +265,60 @@ const AstrologyServices = () => {
   ];
 
   return (
-    <section
-      className="relative py-20 
-      bg-gradient-to-b from-emerald-950 via-teal-950 to-stone-950 
-      overflow-hidden"
-    >
-      <div className="absolute top-0 left-0 w-72 h-72 bg-emerald-700/20 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-0 right-0 w-80 h-80 bg-amber-700/20 rounded-full blur-3xl"></div>
+    <section className="relative py-24 bg-slate-950 overflow-hidden">
+      <div className="absolute top-0 left-0 w-64 h-64 bg-yellow-500/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-72 h-72 bg-indigo-600/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
-        <h2 className="text-3xl md:text-5xl font-serif font-bold text-amber-300 tracking-wide mb-14">
-          Our Consultation Services
+        <span className="text-[10px] font-semibold tracking-[0.22em] uppercase text-yellow-500">
+          Our Specialties
+        </span>
+        <h2 className="font-serif text-3xl md:text-5xl font-bold text-white tracking-wide mt-2 mb-14">
+          Consultation Services
         </h2>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {services.map((service, idx) => (
-            <div
+            <motion.div
               key={idx}
-              className="group relative 
-              bg-white/5 backdrop-blur-xl 
-              border border-white/10 
-              rounded-3xl overflow-hidden 
-              shadow-lg shadow-black/30 
-              hover:shadow-xl hover:shadow-black/40 
-              transition-all duration-500"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: idx * 0.1 }}
+              viewport={{ once: true }}
+              className="group bg-zinc-900 border border-white/5 rounded-2xl overflow-hidden
+              hover:border-yellow-500/20 shadow-lg shadow-black/40
+              transition-all duration-300"
             >
               <div className="relative overflow-hidden">
                 <img
                   src={service.img}
                   alt={service.title}
-                  className="w-full h-56 object-cover 
-                  group-hover:scale-105 transition-transform duration-700"
+                  className="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-700"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-zinc-900/90 via-zinc-900/30 to-transparent" />
               </div>
-
               <div className="p-6 space-y-4 text-center">
-                <h3 className="text-xl font-serif font-semibold text-amber-300 tracking-wide">
+                <h3 className="font-serif text-lg font-semibold text-yellow-400 tracking-wide">
                   {service.title}
                 </h3>
-                <p className="text-emerald-100/90 text-sm leading-relaxed font-light">
+                <p className="text-zinc-400 text-sm leading-relaxed font-light">
                   {service.desc}
                 </p>
                 <a href={`tel:${phone_number}`}>
                   <button
-                    className="w-full flex items-center justify-center gap-2 
-                    py-3 px-6 rounded-full 
-                    bg-gradient-to-r from-amber-500 to-orange-500 
-                    text-black font-semibold 
-                    shadow-md hover:from-amber-400 hover:to-orange-400 
-                    transition-all duration-300"
+                    className="w-full flex items-center justify-center gap-2
+                    py-2.5 px-6 rounded-md mt-2
+                    bg-gradient-to-r from-yellow-500 to-yellow-400
+                    text-black font-semibold text-sm
+                    shadow-md shadow-yellow-500/20
+                    hover:shadow-yellow-500/40 hover:-translate-y-0.5
+                    transition-all duration-200"
                   >
-                    <Phone className="w-5 h-5" />
-                    Call Now
+                    <Phone size={14} /> Call Now
                   </button>
                 </a>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
@@ -313,6 +326,7 @@ const AstrologyServices = () => {
   );
 };
 
+/* ── Wellness Services (image cards) ── */
 const AstrologyServicesModern = () => {
   const services = [
     {
@@ -334,59 +348,54 @@ const AstrologyServicesModern = () => {
   ];
 
   return (
-    <section
-      className="py-16 px-4 
-      bg-gradient-to-b from-emerald-950 via-teal-950 to-stone-950"
-    >
+    <section className="py-20 px-4 bg-zinc-900">
       <div className="max-w-7xl mx-auto">
-        <motion.h2
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-3xl md:text-4xl font-serif font-bold text-amber-300 tracking-wide text-center mb-12"
+          className="text-center mb-12"
         >
-          Wellness Services
-        </motion.h2>
+          <span className="text-[10px] font-semibold tracking-[0.22em] uppercase text-yellow-500">
+            Wellness
+          </span>
+          <h2 className="font-serif text-3xl md:text-4xl font-bold text-white tracking-wide mt-2">
+            Wellness Services
+          </h2>
+        </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {services.map((service, idx) => (
             <motion.div
               key={idx}
               whileHover={{ y: -6 }}
               transition={{ type: "spring", stiffness: 200, damping: 18 }}
-              className="group 
-              bg-white/5 backdrop-blur-xl 
-              border border-white/10 
-              rounded-3xl overflow-hidden
-              shadow-lg shadow-black/30
-              hover:shadow-xl hover:shadow-black/40
-              transition-all duration-300"
+              className="group bg-slate-950 border border-white/5 rounded-2xl overflow-hidden
+              shadow-lg shadow-black/40
+              hover:border-yellow-500/20 transition-all duration-300"
             >
-              <div className="h-48 w-full overflow-hidden">
+              <div className="h-48 w-full overflow-hidden relative">
                 <img
                   src={service.img}
                   alt={service.title}
-                  className="w-full h-full object-cover
-                  group-hover:scale-105 transition-transform duration-500"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 to-transparent" />
               </div>
               <div className="p-5 text-center">
-                <h3 className="text-lg font-serif font-semibold text-amber-300 tracking-wide">
+                <h3 className="font-serif text-base font-semibold text-yellow-400 tracking-wide">
                   {service.title}
                 </h3>
                 <a href={`tel:${phone_number}`}>
                   <button
-                    className="mt-5 w-full flex items-center justify-center gap-2 
-                    bg-gradient-to-r from-emerald-600 to-teal-600
-                    text-white text-sm font-medium 
-                    py-2.5 rounded-full
-                    shadow-md shadow-black/30
-                    hover:from-emerald-500 hover:to-teal-500
-                    transition-all duration-300"
+                    className="mt-4 w-full flex items-center justify-center gap-2
+                    bg-white/5 border border-white/10 text-white text-sm font-medium
+                    py-2.5 rounded-md
+                    hover:bg-yellow-500/10 hover:border-yellow-500/30 hover:text-yellow-400
+                    transition-all duration-200"
                   >
-                    <Phone className="w-4 h-4" />
-                    Call Now
+                    <Phone size={13} /> Call Now
                   </button>
                 </a>
               </div>
@@ -398,105 +407,114 @@ const AstrologyServicesModern = () => {
   );
 };
 
+/* ── All Services (icon cards) ── */
 const AllServicesModern = () => {
   const services = [
     {
       title: "Relationship Healing",
       icon: Heart,
       desc: "Traditional guidance to restore emotional balance and mutual understanding.",
-      gradient: "from-emerald-600 via-teal-600 to-amber-600",
+      accent: "text-rose-400",
+      bg: "bg-rose-500/10 border-rose-500/20",
     },
     {
       title: "Legal Matter Support",
       icon: Scale,
       desc: "Traditional insights to support clarity and peace of mind during legal challenges.",
-      gradient: "from-amber-600 via-orange-600 to-stone-700",
+      accent: "text-amber-400",
+      bg: "bg-amber-500/10 border-amber-500/20",
     },
     {
       title: "Family Harmony",
       icon: Users,
       desc: "Supportive consultation to improve peace and well-being in family relationships.",
-      gradient: "from-emerald-600 via-green-600 to-teal-600",
+      accent: "text-emerald-400",
+      bg: "bg-emerald-500/10 border-emerald-500/20",
     },
     {
       title: "Business Direction",
       icon: Briefcase,
       desc: "Holistic insights to help with planning and professional growth.",
-      gradient: "from-teal-600 via-cyan-700 to-slate-700",
+      accent: "text-sky-400",
+      bg: "bg-sky-500/10 border-sky-500/20",
     },
     {
       title: "Couple Well-being",
       icon: Users,
       desc: "Guidance focused on emotional well-being and togetherness.",
-      gradient: "from-amber-600 via-rose-600 to-stone-700",
+      accent: "text-pink-400",
+      bg: "bg-pink-500/10 border-pink-500/20",
     },
     {
       title: "Traditional Rituals",
       icon: Sparkles,
       desc: "Sacred Kerala practices aimed at inner balance and personal grounding.",
-      gradient: "from-slate-700 via-indigo-700 to-teal-700",
+      accent: "text-violet-400",
+      bg: "bg-violet-500/10 border-violet-500/20",
     },
   ];
 
   return (
-    <section
-      className="py-20 px-4 
-      bg-gradient-to-br from-emerald-950 via-teal-950 to-stone-950"
-    >
+    <section className="py-24 px-4 bg-slate-950">
       <div className="max-w-7xl mx-auto">
-        <motion.h2
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-4xl md:text-5xl font-serif font-bold text-center mb-16 text-amber-300 tracking-wide"
+          className="text-center mb-16"
         >
-          Our Services
-        </motion.h2>
+          <span className="text-[10px] font-semibold tracking-[0.22em] uppercase text-yellow-500">
+            Full Spectrum
+          </span>
+          <h2 className="font-serif text-4xl md:text-5xl font-bold text-white tracking-wide mt-2">
+            Our Services
+          </h2>
+          <div className="flex items-center justify-center gap-3 mt-4">
+            <div className="w-16 h-px bg-gradient-to-r from-transparent to-yellow-500" />
+            <div className="w-2 h-2 rounded-full bg-yellow-500" />
+            <div className="w-16 h-px bg-gradient-to-l from-transparent to-yellow-500" />
+          </div>
+        </motion.div>
 
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((service, id) => (
             <motion.div
               key={id}
-              whileHover={{ y: -8 }}
-              transition={{ type: "spring", stiffness: 180 }}
-              className={`relative rounded-3xl p-[1px] bg-gradient-to-br ${service.gradient}`}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: (id % 3) * 0.1 }}
+              viewport={{ once: true }}
+              whileHover={{ y: -6 }}
+              className="group bg-zinc-900 border border-white/5 rounded-2xl p-8 text-center
+              hover:border-yellow-500/15 shadow-lg shadow-black/30
+              transition-all duration-300"
             >
               <div
-                className="h-full rounded-3xl 
-                bg-white/5 backdrop-blur-xl 
-                p-8 text-center 
-                shadow-lg shadow-black/30"
+                className={`mx-auto mb-6 w-16 h-16 rounded-xl flex items-center justify-center border ${service.bg}`}
               >
-                <div
-                  className={`mx-auto mb-6 w-20 h-20 rounded-full 
-                  flex items-center justify-center 
-                  bg-gradient-to-br ${service.gradient} shadow-md`}
-                >
-                  <service.icon className="w-10 h-10 text-white" />
-                </div>
-
-                <h3 className="text-2xl font-serif font-semibold text-amber-300 tracking-wide mb-3">
-                  {service.title}
-                </h3>
-
-                <p className="text-emerald-100/90 text-sm leading-relaxed font-light mb-6">
-                  {service.desc}
-                </p>
-
-                <a href={`tel:${phone_number}`}>
-                  <button
-                    className="w-full py-3 rounded-full 
-                    font-semibold text-black
-                    bg-gradient-to-r from-amber-500 to-orange-500
-                    shadow-md
-                    hover:from-amber-400 hover:to-orange-400
-                    transition-all duration-300"
-                  >
-                    Get in Touch
-                  </button>
-                </a>
+                <service.icon className={`w-8 h-8 ${service.accent}`} />
               </div>
+
+              <h3 className="font-serif text-xl font-semibold text-white tracking-wide mb-3">
+                {service.title}
+              </h3>
+
+              <p className="text-zinc-400 text-sm leading-relaxed font-light mb-6">
+                {service.desc}
+              </p>
+
+              <a href={`tel:${phone_number}`}>
+                <button
+                  className="w-full py-2.5 rounded-md font-semibold text-sm text-black
+                  bg-gradient-to-r from-yellow-500 to-yellow-400
+                  shadow-md shadow-yellow-500/20
+                  hover:shadow-yellow-500/40 hover:-translate-y-0.5
+                  transition-all duration-200"
+                >
+                  Get in Touch
+                </button>
+              </a>
             </motion.div>
           ))}
         </div>
@@ -505,100 +523,100 @@ const AllServicesModern = () => {
   );
 };
 
+/* ── Home Last / CTA ── */
 function HomeLastDesign() {
   return (
-    <section
-      className="mt-2 mb-2 relative 
-      bg-gradient-to-br from-emerald-950 via-teal-950 to-stone-950 
-      py-20 px-6 overflow-hidden"
-    >
-      <div
-        className="absolute inset-0 
-        bg-[url('https://www.transparenttextures.com/patterns/subtle-dots.png')] 
-        opacity-10"
-      ></div>
+    <section className="relative py-24 px-6 bg-zinc-900 overflow-hidden">
+      <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#d4af37_1px,transparent_1px)] [background-size:32px_32px] pointer-events-none" />
+      <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/subtle-dots.png')] opacity-5 pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-yellow-500/5 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="relative max-w-7xl mx-auto grid md:grid-cols-2 gap-14 items-center">
+      <div className="relative max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+        {/* Image */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
+          initial={{ opacity: 0, scale: 0.92 }}
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8 }}
-          className="flex justify-center relative"
+          viewport={{ once: true }}
+          className="flex justify-center"
         >
-          <div className="absolute -inset-4 rounded-full bg-gradient-to-tr from-emerald-600 via-teal-600 to-amber-600 blur-3xl opacity-30"></div>
-
-          <div
-            className="relative w-80 h-80 md:w-96 md:h-96 
-            rounded-full overflow-hidden 
-            shadow-xl border border-white/20 backdrop-blur-xl"
-          >
-            <img
-              src="https://i.pinimg.com/1200x/3d/ef/55/3def558579612a517065a7c48310e918.jpg"
-              alt={person_name}
-              className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-            />
-            <div className="absolute inset-0 rounded-full border border-amber-400/40"></div>
+          <div className="relative">
+            <div className="absolute -inset-3 rounded-full bg-gradient-to-tr from-yellow-500/20 to-transparent blur-2xl" />
+            <div
+              className="relative w-72 h-72 md:w-88 md:h-88 rounded-full overflow-hidden
+              border border-yellow-500/20 shadow-2xl shadow-black/60"
+            >
+              <img
+                src="https://i.pinimg.com/1200x/3d/ef/55/3def558579612a517065a7c48310e918.jpg"
+                alt={person_name}
+                className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+              />
+              <div className="absolute inset-0 rounded-full border border-yellow-400/10" />
+            </div>
           </div>
         </motion.div>
 
+        {/* Text */}
         <motion.div
           initial={{ opacity: 0, x: 50 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
           className="space-y-6 text-center md:text-left"
         >
-          <h2 className="text-4xl md:text-5xl font-serif font-bold text-amber-300 tracking-wide">
+          <span className="text-[10px] font-semibold tracking-[0.22em] uppercase text-yellow-500">
+            Meet Your Guide
+          </span>
+
+          <h2 className="font-serif text-4xl md:text-5xl font-bold text-white tracking-wide leading-tight">
             {person_name}
           </h2>
+          <div className="w-14 h-px bg-gradient-to-r from-yellow-500 to-transparent mx-auto md:mx-0" />
 
-          <h3 className="text-lg md:text-2xl font-medium text-emerald-100 tracking-wide">
+          <h3 className="text-base md:text-lg font-medium text-zinc-300 tracking-wide">
             Trusted Traditional Kerala Consultation
           </h3>
 
-          <p className="text-emerald-100/90 leading-relaxed text-base font-light">
+          <p className="text-zinc-400 leading-relaxed text-sm font-light">
             With deep understanding of{" "}
-            <span className="text-amber-300 font-medium">Vastu</span>,{" "}
-            <span className="text-emerald-300 font-medium">
+            <span className="text-yellow-400 font-medium">Vastu</span>,{" "}
+            <span className="text-yellow-300 font-medium">
               horoscope interpretation
             </span>
             , and{" "}
-            <span className="text-teal-300 font-medium">
+            <span className="text-yellow-200 font-medium">
               holistic well-being consultation
             </span>
             , {person_name} provides calm, thoughtful guidance to help
             individuals move forward with clarity and confidence.
           </p>
 
-          <div className="flex flex-wrap gap-4 justify-center md:justify-start pt-3">
+          <div className="flex flex-wrap gap-4 justify-center md:justify-start pt-2">
             <a
               href={`tel:${phone_number}`}
-              className="flex items-center gap-2 
-              bg-gradient-to-r from-amber-500 to-orange-500 
-              text-black px-6 py-3 rounded-full 
-              font-semibold shadow-md 
-              hover:from-amber-400 hover:to-orange-400 
-              transition-all duration-300"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-md font-semibold text-sm text-black
+              bg-gradient-to-r from-yellow-500 to-yellow-400
+              shadow-lg shadow-yellow-500/20 hover:shadow-yellow-500/40 hover:-translate-y-0.5
+              transition-all duration-200"
             >
-              <Phone size={20} /> Call Now
+              <Phone size={16} /> Call Now
             </a>
-
             <a
               href={`https://wa.me/${whatsapp_number}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 
-              bg-gradient-to-r from-emerald-600 to-teal-600 
-              text-white px-6 py-3 rounded-full 
-              font-semibold shadow-md 
-              hover:from-emerald-500 hover:to-teal-500 
-              transition-all duration-300"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-md font-semibold text-sm text-white
+              bg-white/5 border border-white/10
+              hover:bg-white/10 hover:border-yellow-500/30 hover:-translate-y-0.5
+              transition-all duration-200"
             >
-              <MessageCircle size={20} /> Chat on WhatsApp
+              <MessageCircle size={16} /> Chat on WhatsApp
             </a>
           </div>
 
-          <p className="mt-5 text-amber-300 font-medium tracking-wide text-sm md:text-base">
-            Trusted Guidance • Calm Insights • Personal Clarity
+          <p className="text-[10px] tracking-[0.18em] uppercase text-yellow-500/80 pt-1">
+            ✦ Trusted Guidance &nbsp;•&nbsp; Calm Insights &nbsp;•&nbsp;
+            Personal Clarity
           </p>
         </motion.div>
       </div>

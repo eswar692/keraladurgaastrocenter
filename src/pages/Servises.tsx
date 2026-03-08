@@ -1,5 +1,6 @@
 import { Phone, MessageCircle } from "lucide-react";
 import { phone_number, whatsapp_number } from "../Genaral/secrete";
+import { motion } from "framer-motion";
 
 const services = [
   {
@@ -41,55 +42,89 @@ const services = [
 
 export default function Services() {
   return (
-    <div className="relative bg-gradient-to-br from-purple-100 via-sky-50 to-white py-24 px-6 overflow-hidden">
-      {/* Decorative Background Glow Circles */}
-      <div className="absolute top-10 -left-16 w-72 h-72 bg-fuchsia-300/30 rounded-full blur-[100px] z-0"></div>
-      <div className="absolute bottom-20 right-0 w-96 h-96 bg-cyan-300/30 rounded-full blur-[120px] z-0"></div>
+    <div className="relative bg-slate-950 min-h-screen py-24 px-6 overflow-hidden">
+      {/* Background effects */}
+      <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#d4af37_1px,transparent_1px)] [background-size:32px_32px] pointer-events-none" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[300px] bg-yellow-500/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-indigo-600/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-80 h-80 bg-yellow-500/4 rounded-full blur-3xl pointer-events-none" />
 
       {/* Heading */}
-      <div className="text-center max-w-3xl mx-auto mb-20 relative z-10">
-        <h2 className="text-5xl font-extrabold bg-gradient-to-r from-violet-600 via-fuchsia-600 to-pink-600 bg-clip-text text-transparent drop-shadow-lg tracking-tight">
-          Our Consultation Services
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="text-center max-w-3xl mx-auto mb-16 relative z-10"
+      >
+        <span className="text-[10px] font-semibold tracking-[0.22em] uppercase text-yellow-500">
+          What We Offer
+        </span>
+        <h2 className="font-serif text-4xl md:text-5xl font-bold text-white tracking-wide mt-3 leading-tight">
+          Our <span className="text-yellow-400">Consultation</span> Services
         </h2>
-        <p className="text-gray-700 mt-6 text-lg md:text-xl leading-relaxed">
+        <div className="flex items-center justify-center gap-3 mt-4">
+          <div className="w-16 h-px bg-gradient-to-r from-transparent to-yellow-500" />
+          <div className="w-2 h-2 rounded-full bg-yellow-500" />
+          <div className="w-16 h-px bg-gradient-to-l from-transparent to-yellow-500" />
+        </div>
+        <p className="text-zinc-400 mt-5 text-sm md:text-base leading-relaxed font-light">
           Explore our services designed to guide you with{" "}
-          <span className="font-semibold text-violet-600">wisdom</span>,{" "}
-          <span className="font-semibold text-pink-600">peace</span>, and{" "}
-          <span className="font-semibold text-sky-600">clarity</span> in life.
+          <span className="font-medium text-yellow-400">wisdom</span>,{" "}
+          <span className="font-medium text-yellow-300">peace</span>, and{" "}
+          <span className="font-medium text-yellow-200">clarity</span> in life.
         </p>
-      </div>
+      </motion.div>
 
       {/* Services Grid */}
-      <div className="max-w-7xl mx-auto grid sm:grid-cols-2 lg:grid-cols-3 gap-10 relative z-10">
+      <div className="max-w-7xl mx-auto grid sm:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10">
         {services.map((service, idx) => (
-          <div
+          <motion.div
             key={idx}
-            className="group relative bg-white/50 backdrop-blur-xl rounded-3xl ring-1 ring-violet-200 shadow-2xl overflow-hidden transition-all duration-300 hover:shadow-3xl hover:scale-[1.02]"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: (idx % 3) * 0.1 }}
+            viewport={{ once: true }}
+            className="group bg-zinc-900 border border-white/5 rounded-2xl overflow-hidden
+            shadow-lg shadow-black/40
+            hover:border-yellow-500/20 hover:shadow-yellow-500/5
+            hover:-translate-y-1 transition-all duration-300"
           >
             {/* Image */}
-            <div className="relative h-60 overflow-hidden">
+            <div className="relative h-56 overflow-hidden">
               <img
                 src={service.img}
                 alt={service.name}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-zinc-900/90 via-zinc-900/30 to-transparent" />
+
+              {/* Name badge over image */}
+              <div className="absolute bottom-0 left-0 right-0 px-5 pb-4">
+                <h3 className="font-serif text-lg font-semibold text-white tracking-wide drop-shadow-md">
+                  {service.name}
+                </h3>
+                <div className="w-8 h-px bg-yellow-500 mt-1.5" />
+              </div>
             </div>
 
             {/* Content */}
-            <div className="p-6 flex flex-col h-full">
-              <h3 className="text-2xl font-bold text-violet-700 mb-3">
-                {service.name}
-              </h3>
-              <p className="text-gray-600 flex-grow leading-relaxed">
+            <div className="p-5 flex flex-col gap-4">
+              <p className="text-zinc-400 text-sm leading-relaxed font-light">
                 {service.desc}
               </p>
 
               {/* Buttons */}
-              <div className="mt-6 flex gap-3">
+              <div className="flex gap-3 pt-1">
                 <a href={`tel:${phone_number}`} className="flex-1">
-                  <button className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-violet-600 to-pink-600 hover:from-violet-700 hover:to-pink-700 text-white px-4 py-2 rounded-xl shadow-md transition">
-                    <Phone size={18} /> Call Now
+                  <button
+                    className="w-full flex items-center justify-center gap-1.5
+                  bg-gradient-to-r from-yellow-500 to-yellow-400
+                  text-black text-xs font-bold px-4 py-2.5 rounded-md
+                  shadow-md shadow-yellow-500/20
+                  hover:shadow-yellow-500/40 hover:-translate-y-0.5
+                  transition-all duration-200"
+                  >
+                    <Phone size={13} /> Call Now
                   </button>
                 </a>
                 <a
@@ -99,15 +134,33 @@ export default function Services() {
                   className="flex-1"
                   aria-label={`WhatsApp us about ${service.name}`}
                 >
-                  <button className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white px-4 py-2 rounded-xl shadow-md transition">
-                    <MessageCircle size={18} /> Message
+                  <button
+                    className="w-full flex items-center justify-center gap-1.5
+                  bg-white/5 border border-white/10 text-white text-xs font-semibold
+                  px-4 py-2.5 rounded-md
+                  hover:bg-yellow-500/10 hover:border-yellow-500/30 hover:text-yellow-400 hover:-translate-y-0.5
+                  transition-all duration-200"
+                  >
+                    <MessageCircle size={13} /> Message
                   </button>
                 </a>
               </div>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
+
+      {/* Bottom tagline */}
+      <motion.p
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: true }}
+        className="text-center text-[10px] tracking-[0.2em] uppercase text-yellow-500/50 mt-16 relative z-10"
+      >
+        ✦ Trusted Guidance &nbsp;•&nbsp; Calm Insights &nbsp;•&nbsp; Personal
+        Clarity
+      </motion.p>
     </div>
   );
 }
