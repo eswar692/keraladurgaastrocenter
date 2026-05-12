@@ -26,15 +26,115 @@ import { useState } from "react";
 
 const Home = () => {
   return (
-    <div className="flex flex-col w-full h-full bg-slate-950">
-      <ImageView />
-      <Problems />
-      <AboutAstrologer />
-      <AstrologyServices />
-      <AstrologyServicesModern />
-      <AllServicesModern />
-      <HomeLastDesign />
-      <FAQ />
+    <main className="relative w-full min-h-screen overflow-hidden bg-[#050507] text-white">
+      {/* Ambient Background Effects */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        {/* Gold Glow */}
+        <div className="absolute top-[-10%] left-[-5%] h-[420px] w-[420px] rounded-full bg-[#d4af37]/10 blur-[140px]" />
+
+        {/* Purple Glow */}
+        <div className="absolute right-[-5%] top-[25%] h-[350px] w-[350px] rounded-full bg-violet-500/10 blur-[130px]" />
+
+        {/* Bottom Glow */}
+        <div className="absolute bottom-[-10%] left-1/2 h-[320px] w-[320px] -translate-x-1/2 rounded-full bg-[#d4af37]/10 blur-[120px]" />
+
+        {/* Grid Texture */}
+        <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#d4af37_1px,transparent_1px)] bg-[size:28px_28px]" />
+
+        {/* Gradient Overlay */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_bottom,transparent,#050507_95%)]" />
+      </div>
+
+      {/* Main Content */}
+      <section className="relative z-10 flex flex-col">
+        {/* HERO */}
+        <div className="relative">
+          <ImageView />
+        </div>
+
+        {/* Elegant Divider */}
+        <Divider />
+
+        {/* PROBLEMS */}
+        <SectionWrapper>
+          <Problems />
+        </SectionWrapper>
+
+        <Divider />
+
+        {/* ABOUT */}
+        <SectionWrapper>
+          <AboutAstrologer />
+        </SectionWrapper>
+
+        <Divider />
+
+        {/* SERVICES */}
+        <SectionWrapper>
+          <AstrologyServices />
+        </SectionWrapper>
+
+        {/* MODERN SERVICES */}
+        <SectionWrapper>
+          <AstrologyServicesModern />
+        </SectionWrapper>
+
+        {/* ALL SERVICES */}
+        <SectionWrapper>
+          <AllServicesModern />
+        </SectionWrapper>
+
+        {/* CTA / LAST DESIGN */}
+        <SectionWrapper>
+          <HomeLastDesign />
+        </SectionWrapper>
+
+        {/* FAQ */}
+        <SectionWrapper className="pb-24">
+          <FAQ />
+        </SectionWrapper>
+      </section>
+    </main>
+  );
+};
+
+/* ───────────────── COMPONENT HELPERS ───────────────── */
+
+const SectionWrapper = ({
+  children,
+  className = "",
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) => {
+  return (
+    <section
+      className={`
+        relative 
+        z-10 
+        w-full 
+        px-4 
+        sm:px-6 
+        md:px-10 
+        lg:px-16 
+        py-14 
+        md:py-20
+        ${className}
+      `}
+    >
+      <div className="mx-auto w-full max-w-[1400px]">{children}</div>
+    </section>
+  );
+};
+
+const Divider = () => {
+  return (
+    <div className="relative flex items-center justify-center py-2">
+      <div className="h-px w-full bg-gradient-to-r from-transparent via-[#d4af3725] to-transparent" />
+
+      <div className="absolute flex items-center justify-center">
+        <div className="h-2 w-2 rotate-45 bg-[#d4af37]/70 shadow-[0_0_12px_rgba(212,175,55,0.7)]" />
+      </div>
     </div>
   );
 };
@@ -47,64 +147,64 @@ export default Home;
 
 const PROBLEMS = [
   {
-    title: "Relationship Guidance",
-    desc: "Traditional consultation for emotional clarity and relationship harmony.",
+    title: "Love & Relationship Guidance",
+    desc: "Traditional Kerala consultation focused on emotional understanding, trust, connection, and peaceful relationship harmony.",
     img: "https://i.pinimg.com/736x/be/b8/3e/beb83e9587806f889eec5e49e351f001.jpg",
-    tag: "Emotional",
+    tag: "Relationships",
   },
   {
-    title: "Marriage Support",
-    desc: "Holistic insights for better understanding and marital balance.",
+    title: "Marriage Compatibility",
+    desc: "Personalized guidance for couples seeking balance, better communication, mutual understanding, and long-term harmony.",
     img: "https://i.pinimg.com/1200x/65/57/d5/6557d5a550f751a5c29d392efed122a3.jpg",
-    tag: "Harmony",
+    tag: "Marriage",
   },
   {
-    title: "Career Direction",
-    desc: "Personalized consultation to navigate career growth and opportunities.",
+    title: "Career & Job Growth",
+    desc: "Consultation designed to support confidence, career direction, professional growth, and important life decisions.",
     img: "https://i.pinimg.com/736x/9d/22/30/9d223074e6ba7d98a04b66feaf2750e3.jpg",
-    tag: "Growth",
+    tag: "Career",
   },
   {
-    title: "Education & Focus",
-    desc: "Traditional wellness practices to enhance concentration and learning.",
+    title: "Education & Concentration",
+    desc: "Traditional wellness guidance to improve focus, clarity, discipline, motivation, and learning confidence.",
     img: "https://i.pinimg.com/1200x/d1/88/da/d188da345a1aa258f410cae6f82d4818.jpg",
-    tag: "Clarity",
+    tag: "Education",
   },
   {
-    title: "Financial Stability",
-    desc: "Holistic insights to support financial planning and a positive mindset.",
+    title: "Money & Financial Stability",
+    desc: "Holistic consultation to encourage financial clarity, positive thinking, balanced planning, and better decision-making.",
     img: "https://i.pinimg.com/736x/94/a8/a5/94a8a5685f1fcb8f33d6d59f1f56bc3b.jpg",
-    tag: "Abundance",
+    tag: "Finance",
   },
   {
-    title: "Family Harmony",
-    desc: "Consultation for resolving misunderstandings and improving peace at home.",
+    title: "Family Peace & Harmony",
+    desc: "Guidance for reducing misunderstandings, restoring emotional balance, and creating a peaceful home environment.",
     img: "https://i.pinimg.com/736x/29/da/fb/29dafb844bd06001a7430df8ef675a6c.jpg",
-    tag: "Peace",
+    tag: "Family",
   },
   {
-    title: "Health & Well-being",
-    desc: "Traditional guidance to support emotional and mental balance.",
+    title: "Health & Emotional Wellness",
+    desc: "Supportive consultation focused on mental peace, emotional wellness, positivity, and inner balance.",
     img: "https://i.pinimg.com/1200x/c4/b9/85/c4b985f1a8e0ef855f514a827bc9d8d0.jpg",
     tag: "Wellness",
   },
   {
-    title: "Business Growth",
-    desc: "Holistic consultation for strategic planning and growth clarity.",
+    title: "Business & Professional Success",
+    desc: "Traditional insights to support business growth, strategic clarity, confidence, and positive opportunities.",
     img: "https://i.pinimg.com/1200x/e3/82/9f/e3829f3f5aeeacc813cd0a0a8eebc8ac.jpg",
-    tag: "Success",
+    tag: "Business",
   },
   {
-    title: "Life Path Clarity",
-    desc: "Discover strengths and direction through traditional Kerala analysis.",
+    title: "Life Path & Future Direction",
+    desc: "Discover personal strengths, meaningful direction, confidence, and clarity through traditional analysis.",
     img: "https://i.pinimg.com/736x/fe/c4/db/fec4dbd0406e4ae90d4cde684526f66b.jpg",
-    tag: "Direction",
+    tag: "Life Path",
   },
   {
-    title: "Inner Well-being",
-    desc: "Guidance to deepen self-awareness and inner peace.",
+    title: "Inner Peace & Self Awareness",
+    desc: "Consultation designed to encourage spiritual balance, emotional clarity, positivity, and self-understanding.",
     img: "https://i.pinimg.com/736x/bd/07/98/bd07989b7867692892f45969e20442c0.jpg",
-    tag: "Soul",
+    tag: "Inner Peace",
   },
 ];
 
@@ -121,100 +221,205 @@ const Problems = () => {
   return (
     <>
       <GlobalStyles />
-      <section className="relative py-24 md:py-32 px-5 md:px-10 bg-[#06060c] overflow-hidden">
-        {/* Background texture */}
-        <div
-          className="absolute inset-0 pointer-events-none opacity-[0.025]"
-          style={{
-            backgroundImage: "radial-gradient(#d4af37 1px, transparent 1px)",
-            backgroundSize: "28px 28px",
-          }}
-        />
 
-        {/* Ambient glow */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[200px] bg-[radial-gradient(ellipse,rgba(212,175,55,0.07),transparent_70%)] pointer-events-none" />
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[500px] h-[200px] bg-[radial-gradient(ellipse,rgba(212,175,55,0.04),transparent_70%)] pointer-events-none" />
+      <section className="relative overflow-hidden bg-[#050507] px-5 py-24 md:px-10 md:py-32">
+        {/* BACKGROUND EFFECTS */}
+        <div className="pointer-events-none absolute inset-0 opacity-[0.035] bg-[radial-gradient(#d4af37_1px,transparent_1px)] bg-[size:30px_30px]" />
 
-        <div className="relative max-w-[1400px] mx-auto">
-          {/* ── Section Header ── */}
+        <div className="absolute left-1/2 top-0 h-[300px] w-[700px] -translate-x-1/2 bg-[radial-gradient(ellipse,rgba(212,175,55,0.08),transparent_70%)]" />
+
+        <div className="absolute bottom-0 left-1/2 h-[260px] w-[500px] -translate-x-1/2 bg-[radial-gradient(ellipse,rgba(212,175,55,0.05),transparent_70%)]" />
+
+        <div className="absolute left-[-100px] top-[20%] h-[300px] w-[300px] rounded-full bg-[#d4af37]/10 blur-[140px]" />
+
+        <div className="absolute bottom-[10%] right-[-100px] h-[260px] w-[260px] rounded-full bg-purple-500/10 blur-[120px]" />
+
+        {/* TOP BORDER */}
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#d4af37]/70 to-transparent" />
+
+        <div className="relative mx-auto max-w-[1450px]">
+          {/* ───────── HEADER ───────── */}
           <motion.div
             variants={headerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-80px" }}
-            className="mb-16 md:mb-20"
+            className="mb-20"
           >
-            {/* Eyebrow */}
-            <motion.div className="flex items-center gap-3 mb-4">
-              <div className="w-8 h-px bg-[linear-gradient(90deg,#d4af37,transparent)]" />
-              <span
-                className="text-[#d4af37]/60 text-[0.6rem] tracking-[0.28em] uppercase"
-                style={{ fontFamily: "monospace" }}
-              >
-                How We Help
-              </span>
-            </motion.div>
+            {/* EYEBROW */}
+            <div className="mb-5 flex items-center gap-3">
+              <div className="h-px w-10 bg-gradient-to-r from-[#d4af37] to-transparent" />
 
-            {/* Heading row */}
-            <motion.div className="flex flex-col md:flex-row md:items-end md:justify-between gap-5">
-              <div>
-                <h2
-                  className="text-white font-bold leading-none"
-                  style={{
-                    fontFamily:
-                      "'Cinzel Decorative', 'Playfair Display', serif",
-                    fontSize: "clamp(1.8rem, 4vw, 3.2rem)",
-                  }}
-                >
+              <span className="text-[11px] uppercase tracking-[0.35em] text-[#d4af37]/70">
+                Traditional Consultation
+              </span>
+            </div>
+
+            {/* TITLE ROW */}
+            <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+              {/* LEFT */}
+              <div className="max-w-3xl">
+                <h2 className="font-serif text-4xl font-bold leading-tight text-white md:text-6xl">
                   Areas of
                 </h2>
-                <h2
-                  className="text-[#d4af37] font-bold leading-none mt-1"
-                  style={{
-                    fontFamily:
-                      "'Cinzel Decorative', 'Playfair Display', serif",
-                    fontSize: "clamp(1.8rem, 4vw, 3.2rem)",
-                  }}
-                >
-                  Consultation
+
+                <h2 className="mt-2 font-serif text-4xl font-bold leading-tight text-[#d4af37] md:text-6xl">
+                  Guidance & Support
                 </h2>
+
+                <p className="mt-7 max-w-2xl text-[15px] leading-relaxed text-white/50 md:text-[16px]">
+                  Every consultation is approached with care, traditional
+                  understanding and personalized attention to help bring
+                  emotional clarity, confidence, peace and balanced life
+                  direction.
+                </p>
               </div>
 
-              {/* Right: count + rule */}
-              <div className="flex items-center gap-4">
-                <div className="h-px flex-1 md:w-32 bg-[linear-gradient(90deg,transparent,rgba(212,175,55,0.3))]" />
-                <span
-                  className="text-white/20 font-light"
-                  style={{ fontFamily: "'Cinzel', serif", fontSize: "2.5rem" }}
-                >
-                  {String(PROBLEMS.length).padStart(2, "0")}
-                </span>
-              </div>
-            </motion.div>
+              {/* RIGHT COUNT */}
+              <div className="flex items-center gap-5">
+                <div className="h-px w-24 bg-gradient-to-r from-transparent to-[#d4af37]/40" />
 
-            {/* Subtitle */}
-            <motion.p
-              className="mt-5 text-white/40 max-w-lg leading-relaxed"
-              style={{
-                fontFamily: "'DM Sans', sans-serif",
-                fontSize: "0.9rem",
-                fontWeight: 300,
-              }}
-            >
-              Rooted in traditional Kerala wisdom, each consultation is tailored
-              to your unique situation — bringing light to life's most complex
-              challenges.
-            </motion.p>
+                <div className="relative">
+                  <span className="font-serif text-6xl text-white/10 md:text-7xl">
+                    {String(PROBLEMS.length).padStart(2, "0")}
+                  </span>
+
+                  <div className="absolute inset-0 blur-xl bg-[#d4af37]/10" />
+                </div>
+              </div>
+            </div>
           </motion.div>
 
-          {/* ── Cards Grid ── */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+          {/* ───────── GRID ───────── */}
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-4">
             {PROBLEMS.map((item, index) => (
-              <ConsultationCard key={index} item={item} index={index} />
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 45 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: 0.6,
+                  delay: index * 0.05,
+                }}
+                viewport={{ once: true }}
+                className="group relative overflow-hidden rounded-[30px] border border-white/5 bg-white/[0.03] backdrop-blur-xl"
+              >
+                {/* IMAGE */}
+                <div className="relative h-[320px] overflow-hidden">
+                  <img
+                    src={item.img}
+                    alt={item.title}
+                    className="h-full w-full object-cover transition-transform duration-[1200ms] group-hover:scale-110"
+                  />
+
+                  {/* OVERLAY */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#050507] via-black/20 to-black/10" />
+
+                  {/* TOP TAG */}
+                  <div className="absolute left-5 top-5">
+                    <span className="rounded-full border border-[#d4af3720] bg-[#d4af370d] px-4 py-2 text-[10px] uppercase tracking-[0.25em] text-[#d4af37] backdrop-blur-xl">
+                      {item.tag}
+                    </span>
+                  </div>
+
+                  {/* HOVER GLOW */}
+                  <div className="absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100 bg-[radial-gradient(circle_at_center,rgba(212,175,55,0.12),transparent_65%)]" />
+                </div>
+
+                {/* CONTENT */}
+                <div className="relative p-6">
+                  {/* GOLD LINE */}
+                  <div className="mb-5 h-px w-16 bg-gradient-to-r from-[#d4af37] to-transparent" />
+
+                  <h3 className="text-2xl font-semibold leading-snug text-white transition-colors duration-300 group-hover:text-[#d4af37]">
+                    {item.title}
+                  </h3>
+
+                  <p className="mt-4 text-[15px] leading-relaxed text-white/50">
+                    {item.desc}
+                  </p>
+
+                  {/* BUTTON */}
+                  <div className="mt-7 flex items-center justify-between">
+                    <span className="text-[11px] uppercase tracking-[0.22em] text-white/30">
+                      Consultation
+                    </span>
+
+                    <div className="flex h-11 w-11 items-center justify-center rounded-full border border-[#d4af3720] bg-[#d4af370d] transition-all duration-300 group-hover:scale-110 group-hover:border-[#d4af3750]">
+                      <svg
+                        className="h-4 w-4 text-[#d4af37]"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M5 12h14m-6-6 6 6-6 6"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+
+                {/* BORDER GLOW */}
+                <div className="pointer-events-none absolute inset-0 rounded-[30px] border border-transparent transition-all duration-500 group-hover:border-[#d4af3720]" />
+              </motion.div>
             ))}
 
-            {/* CTA tile — last cell */}
-            <CTATile />
+            {/* CTA CARD */}
+            <motion.div
+              initial={{ opacity: 0, y: 45 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="group relative flex min-h-[520px] flex-col justify-between overflow-hidden rounded-[30px] border border-[#d4af3720] bg-gradient-to-br from-[#d4af370f] to-transparent p-8 backdrop-blur-xl"
+            >
+              {/* GLOW */}
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(212,175,55,0.15),transparent_70%)]" />
+
+              <div className="relative">
+                <span className="rounded-full border border-[#d4af3725] bg-[#d4af370d] px-4 py-2 text-[10px] uppercase tracking-[0.25em] text-[#d4af37]">
+                  Personal Guidance
+                </span>
+
+                <h3 className="mt-8 font-serif text-4xl leading-tight text-white">
+                  Need
+                  <br />
+                  Personal
+                  <span className="text-[#d4af37]"> Support?</span>
+                </h3>
+
+                <p className="mt-6 text-[15px] leading-relaxed text-white/55">
+                  Speak privately and receive personalized traditional guidance
+                  designed around your unique situation and life concerns.
+                </p>
+              </div>
+
+              {/* BUTTON */}
+              <a
+                href={`https://wa.me/${whatsapp_number}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="relative mt-10 inline-flex items-center justify-center gap-3 rounded-2xl bg-gradient-to-r from-[#d4af37] to-[#f5e27a] px-7 py-4 text-sm font-semibold text-black shadow-[0_10px_40px_rgba(212,175,55,0.25)] transition-all duration-300 hover:-translate-y-1"
+              >
+                Chat on WhatsApp
+                <svg
+                  className="h-4 w-4"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M5 12h14m-6-6 6 6-6 6"
+                  />
+                </svg>
+              </a>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -224,228 +429,7 @@ const Problems = () => {
 
 // ─── Consultation Card ────────────────────────────────────────────────────────
 
-const ConsultationCard = ({
-  item,
-  index,
-}: {
-  item: (typeof PROBLEMS)[number];
-  index: number;
-}) => {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 32 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-40px" }}
-      transition={{
-        duration: 0.6,
-        delay: (index % 4) * 0.08,
-        ease: [0.16, 1, 0.3, 1],
-      }}
-      className="group relative flex flex-col overflow-hidden rounded-xl cursor-pointer"
-      style={{
-        background: "linear-gradient(160deg, #0f0f1a 0%, #0a0a12 100%)",
-        border: "1px solid rgba(255,255,255,0.05)",
-      }}
-      whileHover={{ y: -4, transition: { duration: 0.25, ease: "easeOut" } }}
-    >
-      {/* Image */}
-      <div className="relative overflow-hidden h-52 flex-shrink-0">
-        <img
-          src={item.img}
-          alt={item.title}
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 will-change-transform"
-        />
-        {/* Image overlays */}
-        <div className="absolute inset-0 bg-[#06060c]/30 group-hover:bg-[#06060c]/10 transition-colors duration-500" />
-        <div className="absolute inset-0 bg-[linear-gradient(to_top,#0a0a12_0%,transparent_55%)]" />
-
-        {/* Tag pill */}
-        <div className="absolute top-3 left-3">
-          <span
-            className="inline-block px-2.5 py-1 rounded-full text-[0.58rem] tracking-[0.15em] uppercase font-semibold"
-            style={{
-              fontFamily: "monospace",
-              background: "rgba(6,6,12,0.75)",
-              border: "1px solid rgba(212,175,55,0.2)",
-              color: "rgba(212,175,55,0.8)",
-              backdropFilter: "blur(8px)",
-            }}
-          >
-            {item.tag}
-          </span>
-        </div>
-
-        {/* Index number */}
-        <div
-          className="absolute top-3 right-3 text-white/15 font-bold leading-none"
-          style={{ fontFamily: "'Cinzel', serif", fontSize: "1.1rem" }}
-        >
-          {String(index + 1).padStart(2, "0")}
-        </div>
-      </div>
-
-      {/* Content */}
-      <div className="flex flex-col flex-1 p-5">
-        {/* Gold line accent */}
-        <div className="w-8 h-px bg-[linear-gradient(90deg,#d4af37,transparent)] mb-3 transition-all duration-300 group-hover:w-14" />
-
-        <h3
-          className="text-white font-semibold leading-snug mb-2 group-hover:text-[#f5e27a] transition-colors duration-300"
-          style={{
-            fontFamily: "'Cinzel', serif",
-            fontSize: "0.9rem",
-            letterSpacing: "0.04em",
-          }}
-        >
-          {item.title}
-        </h3>
-
-        <p
-          className="text-white/40 leading-relaxed flex-1 mb-5"
-          style={{
-            fontFamily: "'DM Sans', sans-serif",
-            fontSize: "0.78rem",
-            fontWeight: 300,
-          }}
-        >
-          {item.desc}
-        </p>
-
-        {/* CTA */}
-        <a
-          href={`https://wa.me/${whatsapp_number}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="
-            group/btn flex items-center justify-between
-            px-4 py-2.5 rounded-lg no-underline
-            transition-all duration-300
-          "
-          style={{
-            background: "rgba(212,175,55,0.07)",
-            border: "1px solid rgba(212,175,55,0.12)",
-          }}
-          onMouseEnter={(e) => {
-            const el = e.currentTarget;
-            el.style.background = "rgba(212,175,55,0.14)";
-            el.style.borderColor = "rgba(212,175,55,0.35)";
-          }}
-          onMouseLeave={(e) => {
-            const el = e.currentTarget;
-            el.style.background = "rgba(212,175,55,0.07)";
-            el.style.borderColor = "rgba(212,175,55,0.12)";
-          }}
-        >
-          <span
-            className="flex items-center gap-2 text-[#d4af37] text-[0.72rem] tracking-[0.08em] uppercase font-semibold"
-            style={{ fontFamily: "'Outfit', sans-serif" }}
-          >
-            <MessageCircle size={12} strokeWidth={2} />
-            Consult Now
-          </span>
-          <ArrowUpRight
-            size={13}
-            className="text-[#d4af37]/50 transition-all duration-200 group-hover/btn:text-[#d4af37] group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5"
-            strokeWidth={2}
-          />
-        </a>
-      </div>
-
-      {/* Hover border glow */}
-      <div
-        className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-        style={{ boxShadow: "inset 0 0 0 1px rgba(212,175,55,0.2)" }}
-      />
-    </motion.div>
-  );
-};
-
 // ─── CTA Tile ─────────────────────────────────────────────────────────────────
-
-const CTATile = () => (
-  <motion.a
-    href={`https://wa.me/${whatsapp_number}`}
-    target="_blank"
-    rel="noopener noreferrer"
-    initial={{ opacity: 0, y: 32 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true, margin: "-40px" }}
-    transition={{ duration: 0.6, delay: 0.32, ease: [0.16, 1, 0.3, 1] }}
-    whileHover={{ y: -4, transition: { duration: 0.25 } }}
-    className="group relative flex flex-col items-center justify-center rounded-xl overflow-hidden no-underline min-h-[280px] cursor-pointer"
-    style={{
-      background:
-        "linear-gradient(135deg, rgba(212,175,55,0.12) 0%, rgba(212,175,55,0.04) 100%)",
-      border: "1px solid rgba(212,175,55,0.2)",
-    }}
-  >
-    {/* Animated background shimmer */}
-    <div className="absolute inset-0 bg-[linear-gradient(135deg,transparent_0%,rgba(212,175,55,0.08)_50%,transparent_100%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-    {/* Corner diamonds */}
-    {[
-      "-top-0.5 -left-0.5",
-      "-top-0.5 -right-0.5",
-      "-bottom-0.5 -left-0.5",
-      "-bottom-0.5 -right-0.5",
-    ].map((pos, i) => (
-      <div
-        key={i}
-        className={`absolute ${pos} w-2 h-2 bg-[#d4af37] rotate-45 opacity-40 group-hover:opacity-80 transition-opacity duration-300`}
-      />
-    ))}
-
-    <div className="relative z-10 flex flex-col items-center gap-4 px-8 text-center">
-      {/* Icon ring */}
-      <div
-        className="w-14 h-14 rounded-full flex items-center justify-center"
-        style={{
-          background: "rgba(212,175,55,0.1)",
-          border: "1px solid rgba(212,175,55,0.25)",
-        }}
-      >
-        <MessageCircle size={22} className="text-[#d4af37]" strokeWidth={1.5} />
-      </div>
-
-      <div>
-        <p
-          className="text-[#d4af37] font-bold mb-1"
-          style={{
-            fontFamily: "'Cinzel', serif",
-            fontSize: "0.95rem",
-            letterSpacing: "0.05em",
-          }}
-        >
-          Not Sure Where
-          <br />
-          to Start?
-        </p>
-        <p
-          className="text-white/40"
-          style={{
-            fontFamily: "'DM Sans', sans-serif",
-            fontSize: "0.75rem",
-            fontWeight: 300,
-          }}
-        >
-          Reach out — we'll guide you to the right consultation.
-        </p>
-      </div>
-
-      <span
-        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-[0.75rem] tracking-[0.08em] uppercase font-semibold text-[#08080c]"
-        style={{
-          fontFamily: "'Outfit', sans-serif",
-          background: "linear-gradient(135deg, #d4af37, #f5e27a)",
-          boxShadow: "0 4px 20px rgba(212,175,55,0.35)",
-        }}
-      >
-        <MessageCircle size={13} strokeWidth={2.5} />
-        Message Us
-      </span>
-    </div>
-  </motion.a>
-);
 
 // ─── Global Styles ────────────────────────────────────────────────────────────
 
@@ -462,326 +446,211 @@ const STATS = [
 ];
 
 const AboutAstrologer = () => {
-  const [imgHovered, setImgHovered] = useState(false);
-
   return (
-    <section className="relative py-24 md:py-32 px-5 md:px-10 bg-[#06060c] overflow-hidden">
-      {/* ── Dot grid texture ── */}
-      <div
-        className="absolute inset-0 pointer-events-none opacity-[0.025]"
-        style={{
-          backgroundImage: "radial-gradient(#d4af37 1px, transparent 1px)",
-          backgroundSize: "28px 28px",
-        }}
-      />
+    <section className="relative overflow-hidden bg-[#050507] px-5 py-24 md:px-10 md:py-32">
+      {/* ───────── BACKGROUND EFFECTS ───────── */}
+      <div className="absolute inset-0 opacity-[0.035] bg-[radial-gradient(#d4af37_1px,transparent_1px)] bg-[size:30px_30px]" />
 
-      {/* ── Ambient orbs ── */}
-      <div className="absolute -top-32 -left-32 w-[500px] h-[500px] rounded-full bg-[radial-gradient(circle,rgba(212,175,55,0.07),transparent_65%)] pointer-events-none" />
-      <div className="absolute -bottom-32 -right-20 w-[400px] h-[400px] rounded-full bg-[radial-gradient(circle,rgba(99,102,241,0.05),transparent_65%)] pointer-events-none" />
+      <div className="absolute -left-32 top-0 h-[500px] w-[500px] rounded-full bg-[#d4af37]/10 blur-[160px]" />
 
-      {/* ── Vertical rule (desktop) ── */}
-      <div className="absolute top-0 bottom-0 left-[50%] w-px bg-[linear-gradient(to_bottom,transparent,rgba(212,175,55,0.06)_30%,rgba(212,175,55,0.06)_70%,transparent)] hidden lg:block pointer-events-none" />
+      <div className="absolute bottom-0 right-[-100px] h-[400px] w-[400px] rounded-full bg-purple-500/10 blur-[140px]" />
 
-      <div className="relative z-10 max-w-[1400px] mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          {/* ── LEFT: Image column ── */}
+      <div className="absolute left-1/2 top-0 h-[240px] w-[700px] -translate-x-1/2 bg-[radial-gradient(ellipse,rgba(212,175,55,0.08),transparent_70%)]" />
+
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#d4af37]/60 to-transparent" />
+
+      <div className="relative z-10 mx-auto max-w-[1450px]">
+        <div className="grid grid-cols-1 gap-20 lg:grid-cols-2 lg:items-center">
+          {/* ───────── IMAGE SIDE ───────── */}
           <motion.div
-            initial={{ opacity: 0, x: -40 }}
+            initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="order-2 lg:order-1 flex justify-center lg:justify-start"
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="relative flex justify-center lg:justify-start"
           >
-            <div
-              className="relative w-full max-w-[420px]"
-              onMouseEnter={() => setImgHovered(true)}
-              onMouseLeave={() => setImgHovered(false)}
-            >
-              {/* Decorative corner frames */}
-              <div className="absolute -top-3 -left-3 w-12 h-12 border-t-2 border-l-2 border-[#d4af37]/40 pointer-events-none z-20" />
-              <div className="absolute -bottom-3 -right-3 w-12 h-12 border-b-2 border-r-2 border-[#d4af37]/40 pointer-events-none z-20" />
-              <div className="absolute -top-3 -right-3 w-6 h-6 border-t border-r border-[#d4af37]/20 pointer-events-none z-20" />
-              <div className="absolute -bottom-3 -left-3 w-6 h-6 border-b border-l border-[#d4af37]/20 pointer-events-none z-20" />
+            {/* MAIN WRAPPER */}
+            <div className="relative w-full max-w-[500px]">
+              {/* OUTER GLOW */}
+              <div className="absolute -inset-8 rounded-[40px] bg-[radial-gradient(circle,rgba(212,175,55,0.12),transparent_70%)] blur-2xl" />
 
-              {/* Glow halo behind image */}
-              <div
-                className="absolute -inset-4 rounded-2xl pointer-events-none transition-opacity duration-500"
-                style={{
-                  background:
-                    "radial-gradient(ellipse, rgba(212,175,55,0.14), transparent 70%)",
-                  opacity: imgHovered ? 1 : 0.5,
-                }}
-              />
+              {/* GOLD FRAME */}
+              <div className="absolute -left-5 -top-5 h-24 w-24 border-l-2 border-t-2 border-[#d4af37]/40" />
 
-              {/* Image wrapper */}
-              <div
-                className="relative rounded-xl overflow-hidden"
-                style={{ border: "1px solid rgba(212,175,55,0.12)" }}
-              >
+              <div className="absolute -bottom-5 -right-5 h-24 w-24 border-b-2 border-r-2 border-[#d4af37]/40" />
+
+              {/* IMAGE CARD */}
+              <div className="group relative overflow-hidden rounded-[34px] border border-[#d4af3720] bg-white/[0.03] backdrop-blur-xl">
+                {/* IMAGE */}
                 <img
-                  src="https://i.pinimg.com/1200x/a2/2e/34/a22e34ab3f1765939a7825677df5861f.jpg"
+                  src="https://i.pinimg.com/736x/a1/27/b0/a127b0dbc09393be4e51cb1d27cace81.jpg"
                   alt={`${company_name} practitioner`}
-                  className="w-full h-[460px] object-cover object-top transition-transform duration-700"
-                  style={{ transform: imgHovered ? "scale(1.04)" : "scale(1)" }}
+                  className="h-[620px] w-full object-cover object-top transition-transform duration-[1500ms] group-hover:scale-105"
                 />
-                {/* Image overlay gradient */}
-                <div className="absolute inset-0 bg-[linear-gradient(to_top,#06060c_0%,transparent_40%)]" />
-                <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(6,6,12,0.3),transparent_50%)]" />
 
-                {/* Floating name badge on image */}
-                <div className="absolute bottom-5 left-5 right-5">
-                  <div
-                    className="px-4 py-3 rounded-lg"
-                    style={{
-                      background: "rgba(6,6,12,0.75)",
-                      border: "1px solid rgba(212,175,55,0.18)",
-                      backdropFilter: "blur(12px)",
-                    }}
-                  >
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <p
-                          className="text-white font-semibold leading-tight"
-                          style={{
-                            fontFamily: "'Cinzel', serif",
-                            fontSize: "0.85rem",
-                            letterSpacing: "0.04em",
-                          }}
-                        >
-                          {company_name}
-                        </p>
-                        <p
-                          className="text-[#d4af37]/60 mt-0.5"
-                          style={{
-                            fontFamily: "monospace",
-                            fontSize: "0.6rem",
-                            letterSpacing: "0.15em",
-                          }}
-                        >
-                          TRADITIONAL KERALA PRACTITIONER
-                        </p>
-                      </div>
-                      <div className="w-1.5 h-1.5 bg-[#d4af37] rotate-45 flex-shrink-0" />
+                {/* OVERLAY */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#050507] via-black/10 to-transparent" />
+
+                {/* GLASS INFO CARD */}
+                <div className="absolute bottom-6 left-6 right-6 rounded-3xl border border-[#d4af3720] bg-black/40 p-5 backdrop-blur-xl">
+                  <div className="flex items-start justify-between gap-4">
+                    <div>
+                      <h3 className="font-serif text-2xl text-white">
+                        {company_name}
+                      </h3>
+
+                      <p className="mt-2 text-[11px] uppercase tracking-[0.3em] text-[#d4af37]">
+                        Traditional Kerala Practitioner
+                      </p>
                     </div>
+
+                    <div className="mt-2 h-3 w-3 rotate-45 bg-[#d4af37] shadow-[0_0_18px_rgba(212,175,55,0.8)]" />
                   </div>
                 </div>
               </div>
 
-              {/* Stats row below image */}
-              <div className="grid grid-cols-3 gap-2 mt-4">
-                {STATS.map((s) => (
+              {/* STATS */}
+              <div className="mt-6 grid grid-cols-3 gap-4">
+                {STATS.map((item) => (
                   <div
-                    key={s.label}
-                    className="flex flex-col items-center gap-0.5 py-3 rounded-lg transition-colors duration-200"
-                    style={{
-                      background: "rgba(212,175,55,0.04)",
-                      border: "1px solid rgba(212,175,55,0.1)",
-                    }}
+                    key={item.label}
+                    className="group rounded-2xl border border-[#d4af3720] bg-white/[0.03] p-5 text-center backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-[#d4af3740]"
                   >
-                    <div className="text-[#d4af37]/50 mb-0.5">{s.icon}</div>
-                    <span
-                      className="text-white font-bold leading-none"
-                      style={{
-                        fontFamily: "'Cinzel', serif",
-                        fontSize: "1rem",
-                      }}
-                    >
-                      {s.value}
-                    </span>
-                    <span
-                      className="text-white/30 uppercase tracking-widest"
-                      style={{ fontFamily: "monospace", fontSize: "0.55rem" }}
-                    >
-                      {s.label}
-                    </span>
+                    <div className="mb-3 flex justify-center text-[#d4af37]">
+                      {item.icon}
+                    </div>
+
+                    <h4 className="font-serif text-2xl text-white">
+                      {item.value}
+                    </h4>
+
+                    <p className="mt-1 text-[10px] uppercase tracking-[0.25em] text-white/35">
+                      {item.label}
+                    </p>
                   </div>
                 ))}
               </div>
             </div>
           </motion.div>
 
-          {/* ── RIGHT: Text column ── */}
+          {/* ───────── CONTENT SIDE ───────── */}
           <motion.div
-            initial={{ opacity: 0, x: 40 }}
+            initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
-            className="order-1 lg:order-2 flex flex-col gap-6"
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="relative"
           >
-            {/* Eyebrow */}
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-px bg-[linear-gradient(90deg,#d4af37,transparent)]" />
-              <span
-                className="text-[#d4af37]/60 tracking-[0.28em] uppercase"
-                style={{ fontFamily: "monospace", fontSize: "0.6rem" }}
-              >
-                About Us
+            {/* EYEBROW */}
+            <div className="mb-5 flex items-center gap-3">
+              <div className="h-px w-10 bg-gradient-to-r from-[#d4af37] to-transparent" />
+
+              <span className="text-[11px] uppercase tracking-[0.35em] text-[#d4af37]/70">
+                About Practitioner
               </span>
             </div>
 
-            {/* Heading */}
-            <div>
-              <h2
-                className="text-white font-bold leading-none"
-                style={{
-                  fontFamily: "'Cinzel Decorative', 'Playfair Display', serif",
-                  fontSize: "clamp(1.7rem, 3.5vw, 2.8rem)",
-                  letterSpacing: "-0.01em",
-                }}
-              >
-                {company_name}
-              </h2>
-              <p
-                className="text-[#d4af37] font-light italic mt-2"
-                style={{
-                  fontFamily: "'Playfair Display', serif",
-                  fontSize: "clamp(0.95rem, 1.6vw, 1.2rem)",
-                  letterSpacing: "0.04em",
-                }}
-              >
-                Rooted in tradition. Guided by wisdom.
-              </p>
-            </div>
+            {/* HEADING */}
+            <h2 className="font-serif text-4xl font-bold leading-tight text-white md:text-6xl">
+              Rooted In
+              <br />
+              <span className="bg-gradient-to-r from-[#d4af37] to-[#f5e27a] bg-clip-text text-transparent">
+                Tradition & Wisdom
+              </span>
+            </h2>
 
-            {/* Gold rule */}
-            <div className="flex items-center gap-3">
-              <div className="h-px w-12 bg-[linear-gradient(90deg,#d4af37,transparent)]" />
-              <div className="w-1.5 h-1.5 bg-[#d4af37] rotate-45" />
-              <div className="w-1 h-1 bg-[#d4af37]/30 rotate-45" />
-            </div>
+            {/* SUBTEXT */}
+            <p className="mt-8 max-w-2xl text-[16px] leading-relaxed text-white/55">
+              Meet{" "}
+              <span className="font-semibold text-white">{company_name}</span>,
+              a trusted traditional Kerala practitioner known for offering
+              thoughtful guidance with care, privacy and deep understanding.
+              Every consultation is approached with calmness, respect and
+              personalized attention.
+            </p>
 
-            {/* Body text */}
-            <div className="space-y-4">
-              <p
-                className="leading-relaxed"
-                style={{
-                  fontFamily: "'DM Sans', sans-serif",
-                  fontSize: "clamp(0.88rem, 1.2vw, 0.98rem)",
-                  fontWeight: 300,
-                  color: "rgba(255,255,255,0.5)",
-                }}
-              >
-                Meet{" "}
-                <span className="text-white font-medium">{company_name}</span>,
-                a trusted practitioner whose knowledge is rooted in{" "}
-                <span className="text-[#d4af37]/80 font-medium">
-                  traditional Kerala wisdom
-                </span>
-                . His guidance has helped thousands discover clarity, balance,
-                and confidence across life's most complex crossroads.
-              </p>
-              <p
-                className="leading-relaxed"
-                style={{
-                  fontFamily: "'DM Sans', sans-serif",
-                  fontSize: "clamp(0.88rem, 1.2vw, 0.98rem)",
-                  fontWeight: 300,
-                  color: "rgba(255,255,255,0.5)",
-                }}
-              >
-                Through personalized consultations and thoughtful insights,{" "}
-                {company_name} supports people in navigating life decisions with
-                calmness, awareness, and grounded understanding — blending
-                ancient practices with genuine human care.
-              </p>
-            </div>
+            <p className="mt-6 max-w-2xl text-[16px] leading-relaxed text-white/55">
+              Through years of traditional knowledge and human-centered support,
+              thousands have found emotional clarity, confidence, inner peace
+              and balanced life direction through meaningful consultation.
+            </p>
 
-            {/* Feature pills */}
-            <div className="flex flex-wrap gap-2">
+            {/* FEATURE PILLS */}
+            <div className="mt-10 flex flex-wrap gap-3">
               {[
-                "Confidential Sessions",
-                "Personalized Guidance",
-                "Kerala Tradition",
-                "75+ Years Legacy",
-              ].map((label) => (
-                <span
-                  key={label}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full"
-                  style={{
-                    background: "rgba(212,175,55,0.06)",
-                    border: "1px solid rgba(212,175,55,0.14)",
-                    fontFamily: "'Outfit', sans-serif",
-                    fontSize: "0.68rem",
-                    letterSpacing: "0.06em",
-                    color: "rgba(212,175,55,0.7)",
-                    textTransform: "uppercase",
-                    fontWeight: 600,
-                  }}
+                "Private Sessions",
+                "Traditional Guidance",
+                "Personalized Support",
+                "Trusted Consultation",
+              ].map((item) => (
+                <div
+                  key={item}
+                  className="rounded-full border border-[#d4af3720] bg-[#d4af370d] px-5 py-2 text-[11px] uppercase tracking-[0.2em] text-[#d4af37]"
                 >
-                  <span className="w-1 h-1 rounded-full bg-[#d4af37]/50 flex-shrink-0" />
-                  {label}
-                </span>
+                  {item}
+                </div>
               ))}
             </div>
 
-            {/* CTA buttons */}
-            <div className="flex flex-wrap gap-3 pt-2">
-              {/* Primary */}
+            {/* BUTTONS */}
+            <div className="mt-12 flex flex-wrap gap-5">
+              {/* CALL BUTTON */}
               <motion.a
                 href={`tel:${phone_number}`}
-                whileHover={{ y: -2 }}
+                whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
-                className="group inline-flex items-center gap-2.5 no-underline px-6 py-3.5 rounded-sm font-semibold text-[0.8rem] tracking-[0.07em] uppercase text-[#06060c]"
-                style={{
-                  fontFamily: "'Outfit', sans-serif",
-                  background:
-                    "linear-gradient(135deg, #d4af37 0%, #f5e27a 50%, #d4af37 100%)",
-                  backgroundSize: "200% 100%",
-                  boxShadow: "0 4px 24px rgba(212,175,55,0.4)",
-                }}
+                className="group inline-flex items-center gap-3 rounded-2xl bg-gradient-to-r from-[#d4af37] to-[#f5e27a] px-8 py-4 text-sm font-semibold text-black shadow-[0_10px_40px_rgba(212,175,55,0.3)] transition-all duration-300 hover:-translate-y-1"
               >
-                <Phone size={14} strokeWidth={2.5} />
+                <Phone size={18} />
                 Call Now
                 <ArrowRight
-                  size={12}
-                  strokeWidth={2.5}
-                  className="opacity-60 transition-transform duration-200 group-hover:translate-x-0.5"
+                  size={16}
+                  className="transition-transform duration-300 group-hover:translate-x-1"
                 />
               </motion.a>
 
-              {/* Ghost */}
+              {/* WHATSAPP */}
               <motion.a
                 href={`https://wa.me/${whatsapp_number}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                whileHover={{ y: -2 }}
+                whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
-                className="group inline-flex items-center gap-2.5 no-underline px-6 py-3.5 rounded-sm font-semibold text-[0.8rem] tracking-[0.07em] uppercase transition-all duration-300"
-                style={{
-                  fontFamily: "'Outfit', sans-serif",
-                  color: "rgba(255,255,255,0.75)",
-                  background: "rgba(255,255,255,0.04)",
-                  border: "1px solid rgba(255,255,255,0.1)",
-                }}
-                onMouseEnter={(e) => {
-                  const el = e.currentTarget as HTMLElement;
-                  el.style.background = "rgba(212,175,55,0.08)";
-                  el.style.borderColor = "rgba(212,175,55,0.3)";
-                  el.style.color = "rgba(255,255,255,0.9)";
-                }}
-                onMouseLeave={(e) => {
-                  const el = e.currentTarget as HTMLElement;
-                  el.style.background = "rgba(255,255,255,0.04)";
-                  el.style.borderColor = "rgba(255,255,255,0.1)";
-                  el.style.color = "rgba(255,255,255,0.75)";
-                }}
+                className="group inline-flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.04] px-8 py-4 text-sm font-semibold text-white backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-[#d4af3730] hover:bg-[#d4af370d]"
               >
-                <MessageCircle size={14} strokeWidth={2} />
-                Chat Now
+                <MessageCircle size={18} className="text-[#d4af37]" />
+                Chat on WhatsApp
                 <ArrowRight
-                  size={12}
-                  strokeWidth={2.5}
-                  className="opacity-40 transition-transform duration-200 group-hover:translate-x-0.5"
+                  size={16}
+                  className="transition-transform duration-300 group-hover:translate-x-1"
                 />
               </motion.a>
+            </div>
+
+            {/* QUOTE */}
+            <div className="relative mt-14 overflow-hidden rounded-[30px] border border-[#d4af3720] bg-white/[0.03] p-8 backdrop-blur-xl">
+              <div className="absolute top-0 left-0 h-px w-full bg-gradient-to-r from-transparent via-[#d4af37]/40 to-transparent" />
+
+              <p className="font-serif text-2xl leading-relaxed text-white/85">
+                “Traditional wisdom becomes most meaningful when it helps bring
+                peace, confidence and clarity into everyday life.”
+              </p>
             </div>
           </motion.div>
         </div>
       </div>
 
-      {/* ── Google Fonts (self-contained) ── */}
+      {/* GOOGLE FONTS */}
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@400;600&family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500&family=Outfit:wght@400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+
+        *{
+          font-family:'Inter',sans-serif;
+        }
+
+        .font-serif{
+          font-family:'Cinzel',serif;
+        }
       `}</style>
     </section>
   );
@@ -1150,124 +1019,189 @@ const AstrologyServicesModern = () => {
       img: "https://i.pinimg.com/736x/be/96/4b/be964bb4f6d6e07752fc4b363859b048.jpg",
       tag: "Marriage",
       index: "01",
+      desc: "Guidance focused on emotional understanding, harmony and long-term relationship balance.",
     },
     {
       title: "Couple Conflict Support",
       img: "https://i.pinimg.com/736x/f5/b2/00/f5b200772b619765261b2a50b595ae72.jpg",
       tag: "Conflict",
       index: "02",
+      desc: "Traditional consultation designed to encourage peace, communication and emotional clarity.",
     },
     {
       title: "Relationship Restoration",
       img: "https://i.pinimg.com/1200x/2f/5b/b3/2f5bb3dde2c5891188f1170b5d12260f.jpg",
       tag: "Restore",
       index: "03",
+      desc: "Supportive personalized guidance to rebuild emotional connection and understanding.",
     },
     {
       title: "Financial Well-being",
       img: "https://i.pinimg.com/736x/40/99/9c/40999c10cdac6c327a1378c45be496b5.jpg",
       tag: "Wellness",
       index: "04",
+      desc: "Holistic insights focused on financial confidence, clarity and positive decision making.",
     },
   ];
+
   return (
-    <section className="relative py-24 md:py-32 px-5 md:px-10 bg-[#06060c] overflow-hidden">
-      {/* Dot grid */}
-      <div
-        className="absolute inset-0 pointer-events-none opacity-[0.025]"
-        style={{
-          backgroundImage: "radial-gradient(#d4af37 1px, transparent 1px)",
-          backgroundSize: "28px 28px",
-        }}
-      />
+    <section className="relative overflow-hidden bg-[#050507] px-5 py-24 md:px-10 md:py-32">
+      {/* ───────── BACKGROUND ───────── */}
+      <div className="absolute inset-0 opacity-[0.035] bg-[radial-gradient(#d4af37_1px,transparent_1px)] bg-[size:30px_30px]" />
 
-      {/* Ambient orbs */}
-      <div
-        className="absolute top-0 right-0 w-[380px] h-[280px] rounded-full pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(ellipse, rgba(212,175,55,0.06), transparent 70%)",
-        }}
-      />
-      <div
-        className="absolute bottom-0 left-0 w-[320px] h-[240px] rounded-full pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(ellipse, rgba(99,102,241,0.04), transparent 70%)",
-        }}
-      />
+      <div className="absolute right-[-120px] top-0 h-[380px] w-[380px] rounded-full bg-[#d4af37]/10 blur-[140px]" />
 
-      <div className="relative z-10 max-w-[1400px] mx-auto">
-        {/* Section header */}
+      <div className="absolute bottom-0 left-[-120px] h-[320px] w-[320px] rounded-full bg-violet-500/10 blur-[120px]" />
+
+      <div className="absolute left-1/2 top-0 h-[220px] w-[700px] -translate-x-1/2 bg-[radial-gradient(ellipse,rgba(212,175,55,0.08),transparent_70%)]" />
+
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#d4af37]/70 to-transparent" />
+
+      <div className="relative z-10 mx-auto max-w-[1450px]">
+        {/* ───────── HEADER ───────── */}
         <motion.div
-          initial={{ opacity: 0, y: 24, filter: "blur(4px)" }}
-          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-          viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
-          className="mb-14 md:mb-18"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="mb-20"
         >
-          {/* Eyebrow */}
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-8 h-px bg-[linear-gradient(90deg,#d4af37,transparent)]" />
-            <span
-              className="text-[#d4af37]/60 tracking-[0.28em] uppercase"
-              style={{ fontFamily: "monospace", fontSize: "0.6rem" }}
-            >
-              Wellness
+          {/* EYEBROW */}
+          <div className="mb-5 flex items-center gap-3">
+            <div className="h-px w-10 bg-gradient-to-r from-[#d4af37] to-transparent" />
+
+            <span className="text-[11px] uppercase tracking-[0.35em] text-[#d4af37]/70">
+              Traditional Wellness
             </span>
           </div>
 
-          {/* Heading + count */}
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
-            <div>
-              <h2
-                className="text-white font-bold leading-none"
-                style={{
-                  fontFamily: "'Cinzel Decorative', 'Playfair Display', serif",
-                  fontSize: "clamp(1.8rem, 4vw, 3.2rem)",
-                }}
-              >
-                Wellness
+          {/* TITLE */}
+          <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+            <div className="max-w-3xl">
+              <h2 className="font-serif text-4xl font-bold leading-tight text-white md:text-6xl">
+                Personalized
               </h2>
-              <h2
-                className="text-[#d4af37] font-bold leading-none mt-1"
-                style={{
-                  fontFamily: "'Cinzel Decorative', 'Playfair Display', serif",
-                  fontSize: "clamp(1.8rem, 4vw, 3.2rem)",
-                }}
-              >
-                Services
+
+              <h2 className="mt-2 font-serif text-4xl font-bold leading-tight text-[#d4af37] md:text-6xl">
+                Wellness Services
               </h2>
+
+              <p className="mt-7 max-w-2xl text-[15px] leading-relaxed text-white/50 md:text-[16px]">
+                Every consultation is thoughtfully designed to support emotional
+                clarity, peaceful relationships, confidence and balanced life
+                direction through traditional guidance.
+              </p>
             </div>
-            <div className="flex items-center gap-4">
-              <div
-                className="h-px flex-1 md:w-24"
-                style={{
-                  background:
-                    "linear-gradient(90deg,transparent,rgba(212,175,55,0.3))",
-                }}
-              />
-              <span
-                className="text-white/15 font-light leading-none"
-                style={{ fontFamily: "'Cinzel', serif", fontSize: "2.5rem" }}
-              >
+
+            {/* COUNT */}
+            <div className="flex items-center gap-5">
+              <div className="h-px w-24 bg-gradient-to-r from-transparent to-[#d4af37]/40" />
+
+              <span className="font-serif text-6xl text-white/10 md:text-7xl">
                 {String(SERVICES.length).padStart(2, "0")}
               </span>
             </div>
           </div>
         </motion.div>
 
-        {/* Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {/* ───────── SERVICES GRID ───────── */}
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-4">
           {SERVICES.map((service, idx) => (
-            <ServiceCard key={idx} service={service} idx={idx} />
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, y: 45 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.6,
+                delay: idx * 0.08,
+              }}
+              viewport={{ once: true }}
+              className="group relative overflow-hidden rounded-[32px] border border-white/5 bg-white/[0.03] backdrop-blur-xl"
+            >
+              {/* IMAGE */}
+              <div className="relative h-[430px] overflow-hidden">
+                <img
+                  src={service.img}
+                  alt={service.title}
+                  className="h-full w-full object-cover transition-transform duration-[1400ms] group-hover:scale-110"
+                />
+
+                {/* OVERLAY */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#050507] via-black/20 to-black/10" />
+
+                {/* SERVICE NUMBER */}
+                <div className="absolute right-5 top-5">
+                  <span className="font-serif text-5xl text-white/15">
+                    {service.index}
+                  </span>
+                </div>
+
+                {/* TAG */}
+                <div className="absolute left-5 top-5">
+                  <span className="rounded-full border border-[#d4af3720] bg-[#d4af370d] px-4 py-2 text-[10px] uppercase tracking-[0.25em] text-[#d4af37] backdrop-blur-xl">
+                    {service.tag}
+                  </span>
+                </div>
+
+                {/* GLOW */}
+                <div className="absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100 bg-[radial-gradient(circle_at_center,rgba(212,175,55,0.12),transparent_70%)]" />
+              </div>
+
+              {/* CONTENT */}
+              <div className="relative p-7">
+                {/* GOLD LINE */}
+                <div className="mb-5 h-px w-16 bg-gradient-to-r from-[#d4af37] to-transparent" />
+
+                <h3 className="text-2xl font-semibold leading-snug text-white transition-colors duration-300 group-hover:text-[#d4af37]">
+                  {service.title}
+                </h3>
+
+                <p className="mt-4 text-[15px] leading-relaxed text-white/50">
+                  {service.desc}
+                </p>
+
+                {/* FOOTER */}
+                <div className="mt-8 flex items-center justify-between">
+                  <span className="text-[11px] uppercase tracking-[0.22em] text-white/30">
+                    Consultation
+                  </span>
+
+                  <div className="flex h-11 w-11 items-center justify-center rounded-full border border-[#d4af3720] bg-[#d4af370d] transition-all duration-300 group-hover:scale-110 group-hover:border-[#d4af3750]">
+                    <svg
+                      className="h-4 w-4 text-[#d4af37]"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M5 12h14m-6-6 6 6-6 6"
+                      />
+                    </svg>
+                  </div>
+                </div>
+
+                {/* BORDER GLOW */}
+                <div className="pointer-events-none absolute inset-0 rounded-[32px] border border-transparent transition-all duration-500 group-hover:border-[#d4af3720]" />
+              </div>
+            </motion.div>
           ))}
         </div>
       </div>
 
-      {/* Fonts */}
+      {/* GOOGLE FONTS */}
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@400;600&family=DM+Sans:wght@300;400;500&family=Outfit:wght@400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+
+        *{
+          font-family:'Inter',sans-serif;
+        }
+
+        .font-serif{
+          font-family:'Cinzel',serif;
+        }
       `}</style>
     </section>
   );
@@ -1394,341 +1328,209 @@ const AllServicesModern = () => {
 /* ── Home Last / CTA ── */
 
 const HomeLastDesign = () => {
-  const [imgHovered, setImgHovered] = useState(false);
-
   const PILLARS = [
-    { icon: <Eye size={13} />, label: "Vastu" },
-    { icon: <Sparkles size={13} />, label: "Horoscope" },
-    { icon: <Shield size={13} />, label: "Well-being" },
+    { icon: <Eye size={15} />, label: "Vastu Guidance" },
+    { icon: <Sparkles size={15} />, label: "Horoscope Reading" },
+    { icon: <Shield size={15} />, label: "Life Wellness" },
   ];
 
   return (
-    <section className="relative py-24 md:py-32 px-5 md:px-10 bg-[#06060c] overflow-hidden">
-      {/* Dot grid */}
-      <div
-        className="absolute inset-0 pointer-events-none opacity-[0.025]"
-        style={{
-          backgroundImage: "radial-gradient(#d4af37 1px, transparent 1px)",
-          backgroundSize: "28px 28px",
-        }}
-      />
+    <section className="relative overflow-hidden bg-[#050507] px-5 py-24 md:px-10 md:py-32">
+      {/* ───────── BACKGROUND ───────── */}
+      <div className="absolute inset-0 opacity-[0.035] bg-[radial-gradient(#d4af37_1px,transparent_1px)] bg-[size:30px_30px]" />
 
-      {/* Ambient orbs */}
-      <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(circle, rgba(212,175,55,0.06), transparent 65%)",
-        }}
-      />
-      <div
-        className="absolute -top-20 -right-20 w-[350px] h-[350px] pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(circle, rgba(99,102,241,0.04), transparent 65%)",
-        }}
-      />
+      <div className="absolute left-[-100px] top-[10%] h-[400px] w-[400px] rounded-full bg-[#d4af37]/10 blur-[160px]" />
 
-      {/* Vertical center rule */}
-      <div
-        className="absolute top-0 bottom-0 left-[50%] w-px pointer-events-none hidden lg:block"
-        style={{
-          background:
-            "linear-gradient(to bottom, transparent, rgba(212,175,55,0.06) 30%, rgba(212,175,55,0.06) 70%, transparent)",
-        }}
-      />
+      <div className="absolute bottom-0 right-[-100px] h-[360px] w-[360px] rounded-full bg-violet-500/10 blur-[140px]" />
 
-      <div className="relative z-10 max-w-[1400px] mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-24 items-center">
-          {/* ── LEFT: Portrait ── */}
+      <div className="absolute left-1/2 top-0 h-[240px] w-[700px] -translate-x-1/2 bg-[radial-gradient(ellipse,rgba(212,175,55,0.08),transparent_70%)]" />
+
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#d4af37]/70 to-transparent" />
+
+      <div className="relative z-10 mx-auto max-w-[1450px]">
+        <div className="grid grid-cols-1 gap-20 lg:grid-cols-2 lg:items-center">
+          {/* ───────── LEFT SIDE ───────── */}
           <motion.div
-            initial={{ opacity: 0, x: -40 }}
+            initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
-            className="flex justify-center lg:justify-start"
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="relative flex justify-center lg:justify-start"
           >
+            {/* IMAGE WRAPPER */}
             <div className="relative">
-              {/* Outer decorative ring */}
-              <div
-                className="absolute -inset-5 rounded-full pointer-events-none transition-opacity duration-500"
-                style={{
-                  background:
-                    "conic-gradient(from 0deg, rgba(212,175,55,0.12), transparent 40%, rgba(212,175,55,0.08), transparent 80%)",
-                  opacity: imgHovered ? 1 : 0.5,
-                }}
-              />
+              {/* OUTER GLOW */}
+              <div className="absolute -inset-10 rounded-full bg-[radial-gradient(circle,rgba(212,175,55,0.15),transparent_70%)] blur-3xl" />
 
-              {/* Corner frame accents */}
-              <div className="absolute -top-2 -left-2 w-8 h-8 border-t-2 border-l-2 border-[#d4af37]/35 rounded-tl-sm pointer-events-none z-20" />
-              <div className="absolute -bottom-2 -right-2 w-8 h-8 border-b-2 border-r-2 border-[#d4af37]/35 rounded-br-sm pointer-events-none z-20" />
+              {/* ROTATING BORDER */}
+              <div className="absolute inset-[-25px] rounded-full border border-[#d4af3715] animate-[spin_18s_linear_infinite]" />
 
-              {/* Glow halo */}
-              <div
-                className="absolute -inset-6 rounded-full pointer-events-none transition-opacity duration-500"
-                style={{
-                  background:
-                    "radial-gradient(circle, rgba(212,175,55,0.16), transparent 65%)",
-                  opacity: imgHovered ? 1 : 0.4,
-                }}
-              />
+              {/* SECOND RING */}
+              <div className="absolute inset-[-12px] rounded-full border border-[#d4af3720]" />
 
-              {/* Circle portrait */}
-              <div
-                className="relative w-72 h-72 md:w-80 md:h-80 rounded-full overflow-hidden"
-                style={{ border: "1px solid rgba(212,175,55,0.2)" }}
-                onMouseEnter={() => setImgHovered(true)}
-                onMouseLeave={() => setImgHovered(false)}
-              >
+              {/* GOLD DOT */}
+              <div className="absolute left-1/2 top-[-24px] h-4 w-4 -translate-x-1/2 rounded-full bg-[#d4af37] shadow-[0_0_18px_rgba(212,175,55,0.8)]" />
+
+              {/* MAIN IMAGE */}
+              <div className="group relative h-[340px] w-[340px] overflow-hidden rounded-full border border-[#d4af3725] bg-white/[0.03] backdrop-blur-xl md:h-[420px] md:w-[420px]">
                 <img
                   src="https://i.pinimg.com/1200x/3d/ef/55/3def558579612a517065a7c48310e918.jpg"
                   alt={person_name}
-                  className="w-full h-full object-cover will-change-transform transition-transform duration-700"
-                  style={{ transform: imgHovered ? "scale(1.07)" : "scale(1)" }}
+                  className="h-full w-full object-cover transition-transform duration-[1500ms] group-hover:scale-110"
                 />
-                {/* Shimmer overlay */}
-                <div
-                  className="absolute inset-0 rounded-full transition-opacity duration-500"
-                  style={{
-                    background:
-                      "linear-gradient(135deg, rgba(212,175,55,0.15), transparent 50%)",
-                    opacity: imgHovered ? 1 : 0,
-                  }}
-                />
-                {/* Inner border ring */}
-                <div
-                  className="absolute inset-0 rounded-full"
-                  style={{ border: "1px solid rgba(212,175,55,0.1)" }}
-                />
-              </div>
 
-              {/* Floating name badge */}
-              <div
-                className="absolute -bottom-4 left-1/2 -translate-x-1/2 px-5 py-2.5 rounded-lg whitespace-nowrap z-20"
-                style={{
-                  background: "rgba(6,6,12,0.85)",
-                  border: "1px solid rgba(212,175,55,0.2)",
-                  backdropFilter: "blur(12px)",
-                  boxShadow: "0 8px 32px rgba(0,0,0,0.5)",
-                }}
-              >
-                <div className="flex items-center gap-3">
-                  <div className="w-1.5 h-1.5 bg-[#d4af37] rotate-45 flex-shrink-0" />
-                  <div>
-                    <p
-                      className="text-white font-semibold leading-none"
-                      style={{
-                        fontFamily: "'Cinzel', serif",
-                        fontSize: "0.82rem",
-                        letterSpacing: "0.05em",
-                      }}
-                    >
-                      {person_name}
-                    </p>
-                    <p
-                      className="text-[#d4af37]/55 mt-0.5 leading-none"
-                      style={{
-                        fontFamily: "monospace",
-                        fontSize: "0.55rem",
-                        letterSpacing: "0.15em",
-                      }}
-                    >
-                      KERALA PRACTITIONER
-                    </p>
-                  </div>
-                  <div className="w-1.5 h-1.5 bg-[#d4af37] rotate-45 flex-shrink-0" />
+                {/* OVERLAY */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#050507] via-black/10 to-transparent" />
+
+                {/* SHIMMER */}
+                <div className="absolute inset-0 opacity-0 transition-opacity duration-700 group-hover:opacity-100 bg-[linear-gradient(135deg,rgba(212,175,55,0.18),transparent_45%)]" />
+
+                {/* CENTER BADGE */}
+                <div className="absolute bottom-6 left-1/2 w-[88%] -translate-x-1/2 rounded-2xl border border-[#d4af3720] bg-black/40 p-4 text-center backdrop-blur-xl">
+                  <h3 className="font-serif text-xl text-white">
+                    {person_name}
+                  </h3>
+
+                  <p className="mt-1 text-[10px] uppercase tracking-[0.28em] text-[#d4af37]">
+                    Traditional Kerala Practitioner
+                  </p>
                 </div>
-              </div>
-
-              {/* Rotating orbit dot */}
-              <div className="absolute inset-0 rounded-full pointer-events-none animate-orbit">
-                <div
-                  className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1 w-2 h-2 rounded-full bg-[#d4af37]"
-                  style={{ boxShadow: "0 0 8px rgba(212,175,55,0.8)" }}
-                />
               </div>
             </div>
           </motion.div>
 
-          {/* ── RIGHT: Text ── */}
+          {/* ───────── RIGHT SIDE ───────── */}
           <motion.div
-            initial={{ opacity: 0, x: 40 }}
+            initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
-            className="flex flex-col gap-6"
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="relative"
           >
-            {/* Eyebrow */}
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-px bg-[linear-gradient(90deg,#d4af37,transparent)]" />
-              <span
-                className="text-[#d4af37]/60 tracking-[0.28em] uppercase"
-                style={{ fontFamily: "monospace", fontSize: "0.6rem" }}
-              >
+            {/* EYEBROW */}
+            <div className="mb-5 flex items-center gap-3">
+              <div className="h-px w-10 bg-gradient-to-r from-[#d4af37] to-transparent" />
+
+              <span className="text-[11px] uppercase tracking-[0.35em] text-[#d4af37]/70">
                 Meet Your Guide
               </span>
             </div>
 
-            {/* Heading */}
-            <div>
-              <h2
-                className="text-white font-bold leading-none"
-                style={{
-                  fontFamily: "'Cinzel Decorative', 'Playfair Display', serif",
-                  fontSize: "clamp(1.7rem, 3.5vw, 2.8rem)",
-                  letterSpacing: "-0.01em",
-                }}
-              >
+            {/* TITLE */}
+            <h2 className="font-serif text-4xl font-bold leading-tight text-white md:text-6xl">
+              Traditional
+              <br />
+              <span className="bg-gradient-to-r from-[#d4af37] to-[#f5e27a] bg-clip-text text-transparent">
+                Wisdom & Clarity
+              </span>
+            </h2>
+
+            {/* TEXT */}
+            <p className="mt-8 max-w-2xl text-[16px] leading-relaxed text-white/55">
+              With years of traditional understanding and thoughtful guidance,
+              <span className="font-semibold text-white">
+                {" "}
                 {person_name}
-              </h2>
-              <p
-                className="text-[#d4af37] font-light italic mt-2"
-                style={{
-                  fontFamily: "'Playfair Display', serif",
-                  fontSize: "clamp(0.9rem, 1.5vw, 1.1rem)",
-                  letterSpacing: "0.04em",
-                }}
-              >
-                Trusted Traditional Kerala Consultation
-              </p>
-            </div>
-
-            {/* Gold rule */}
-            <div className="flex items-center gap-3">
-              <div className="h-px w-10 bg-[linear-gradient(90deg,#d4af37,transparent)]" />
-              <div className="w-1.5 h-1.5 bg-[#d4af37] rotate-45" />
-              <div className="w-1 h-1 bg-[#d4af37]/30 rotate-45" />
-            </div>
-
-            {/* Body text */}
-            <p
-              className="leading-relaxed max-w-lg"
-              style={{
-                fontFamily: "'DM Sans', sans-serif",
-                fontSize: "clamp(0.88rem, 1.2vw, 0.98rem)",
-                fontWeight: 300,
-                color: "rgba(255,255,255,0.5)",
-              }}
-            >
-              With deep understanding of{" "}
-              <span className="text-[#d4af37]/85 font-medium">Vastu</span>,{" "}
-              <span className="text-[#d4af37]/70 font-medium">
-                horoscope interpretation
-              </span>
-              , and{" "}
-              <span className="text-[#d4af37]/60 font-medium">
-                holistic well-being consultation
-              </span>
-              , {person_name} provides calm, thoughtful guidance to help
-              individuals move forward with clarity and confidence.
+              </span>{" "}
+              supports individuals seeking emotional clarity, relationship
+              balance, confidence and peaceful life direction.
             </p>
 
-            {/* Pillar chips */}
-            <div className="flex flex-wrap gap-2">
-              {PILLARS.map((p) => (
-                <span
-                  key={p.label}
-                  className="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg"
-                  style={{
-                    background: "rgba(212,175,55,0.06)",
-                    border: "1px solid rgba(212,175,55,0.14)",
-                    fontFamily: "'Outfit', sans-serif",
-                    fontSize: "0.7rem",
-                    letterSpacing: "0.08em",
-                    textTransform: "uppercase",
-                    fontWeight: 600,
-                    color: "rgba(212,175,55,0.75)",
-                  }}
+            <p className="mt-6 max-w-2xl text-[16px] leading-relaxed text-white/55">
+              Every consultation is approached with care, privacy and genuine
+              human understanding — combining traditional Kerala practices with
+              calm and personalized support.
+            </p>
+
+            {/* PILLARS */}
+            <div className="mt-10 flex flex-wrap gap-4">
+              {PILLARS.map((item) => (
+                <div
+                  key={item.label}
+                  className="group inline-flex items-center gap-3 rounded-2xl border border-[#d4af3720] bg-[#d4af370d] px-5 py-3 text-[12px] uppercase tracking-[0.18em] text-[#d4af37] transition-all duration-300 hover:-translate-y-1 hover:border-[#d4af3740]"
                 >
-                  <span className="text-[#d4af37]/50">{p.icon}</span>
-                  {p.label}
-                </span>
+                  <span className="text-[#d4af37]">{item.icon}</span>
+
+                  {item.label}
+                </div>
               ))}
             </div>
 
-            {/* CTA buttons */}
-            <div className="flex flex-wrap gap-3 pt-1">
+            {/* CTA BUTTONS */}
+            <div className="mt-12 flex flex-wrap gap-5">
+              {/* CALL */}
               <motion.a
                 href={`tel:${phone_number}`}
-                whileHover={{ y: -2 }}
+                whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
-                className="group inline-flex items-center gap-2.5 no-underline px-6 py-3.5 rounded-sm font-semibold tracking-[0.07em] uppercase text-[#06060c]"
-                style={{
-                  fontFamily: "'Outfit', sans-serif",
-                  fontSize: "0.78rem",
-                  background:
-                    "linear-gradient(135deg, #d4af37 0%, #f5e27a 50%, #d4af37 100%)",
-                  backgroundSize: "200% 100%",
-                  boxShadow: "0 4px 24px rgba(212,175,55,0.4)",
-                }}
+                className="group inline-flex items-center gap-3 rounded-2xl bg-gradient-to-r from-[#d4af37] to-[#f5e27a] px-8 py-4 text-sm font-semibold text-black shadow-[0_10px_40px_rgba(212,175,55,0.3)] transition-all duration-300 hover:-translate-y-1"
               >
-                <Phone size={14} strokeWidth={2.5} />
+                <Phone size={18} />
                 Call Now
                 <ArrowRight
-                  size={12}
-                  strokeWidth={2.5}
-                  className="opacity-60 group-hover:translate-x-0.5 transition-transform duration-200"
+                  size={16}
+                  className="transition-transform duration-300 group-hover:translate-x-1"
                 />
               </motion.a>
 
+              {/* WHATSAPP */}
               <motion.a
                 href={`https://wa.me/${whatsapp_number}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                whileHover={{ y: -2 }}
+                whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
-                className="group inline-flex items-center gap-2.5 no-underline px-6 py-3.5 rounded-sm font-semibold tracking-[0.07em] uppercase transition-all duration-300"
-                style={{
-                  fontFamily: "'Outfit', sans-serif",
-                  fontSize: "0.78rem",
-                  color: "rgba(255,255,255,0.75)",
-                  background: "rgba(255,255,255,0.04)",
-                  border: "1px solid rgba(255,255,255,0.1)",
-                }}
-                onMouseEnter={(e) => {
-                  const el = e.currentTarget as HTMLElement;
-                  el.style.background = "rgba(212,175,55,0.08)";
-                  el.style.borderColor = "rgba(212,175,55,0.3)";
-                  el.style.color = "rgba(255,255,255,0.9)";
-                }}
-                onMouseLeave={(e) => {
-                  const el = e.currentTarget as HTMLElement;
-                  el.style.background = "rgba(255,255,255,0.04)";
-                  el.style.borderColor = "rgba(255,255,255,0.1)";
-                  el.style.color = "rgba(255,255,255,0.75)";
-                }}
+                className="group inline-flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.04] px-8 py-4 text-sm font-semibold text-white backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-[#d4af3730] hover:bg-[#d4af370d]"
               >
-                <MessageCircle size={14} strokeWidth={2} />
+                <MessageCircle size={18} className="text-[#d4af37]" />
                 Chat on WhatsApp
                 <ArrowRight
-                  size={12}
-                  strokeWidth={2.5}
-                  className="opacity-40 group-hover:translate-x-0.5 transition-transform duration-200"
+                  size={16}
+                  className="transition-transform duration-300 group-hover:translate-x-1"
                 />
               </motion.a>
             </div>
 
-            {/* Trust line */}
-            <div className="flex items-center gap-3 pt-1">
-              <div className="w-1 h-1 bg-[#d4af37]/40 rotate-45" />
-              <p
-                className="text-[#d4af37]/40 tracking-[0.18em] uppercase"
-                style={{ fontFamily: "monospace", fontSize: "0.58rem" }}
-              >
-                Trusted Guidance &nbsp;·&nbsp; Calm Insights &nbsp;·&nbsp;
-                Personal Clarity
+            {/* TRUST LINE */}
+            <div className="mt-10 flex flex-wrap items-center gap-4">
+              {[
+                "Trusted Guidance",
+                "Private Consultation",
+                "Personalized Support",
+              ].map((item) => (
+                <div
+                  key={item}
+                  className="rounded-full border border-[#d4af3720] bg-white/[0.03] px-4 py-2 text-[10px] uppercase tracking-[0.22em] text-white/50"
+                >
+                  {item}
+                </div>
+              ))}
+            </div>
+
+            {/* QUOTE CARD */}
+            <div className="relative mt-14 overflow-hidden rounded-[32px] border border-[#d4af3720] bg-white/[0.03] p-8 backdrop-blur-xl">
+              <div className="absolute top-0 left-0 h-px w-full bg-gradient-to-r from-transparent via-[#d4af37]/40 to-transparent" />
+
+              <p className="font-serif text-2xl leading-relaxed text-white/85">
+                “Guidance becomes meaningful when it brings confidence,
+                emotional peace and clarity into everyday life.”
               </p>
-              <div className="w-1 h-1 bg-[#d4af37]/40 rotate-45" />
             </div>
           </motion.div>
         </div>
       </div>
 
-      {/* Fonts + orbit animation */}
+      {/* GOOGLE FONTS */}
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@400;600&family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500&family=Outfit:wght@400;500;600;700&display=swap');
-        @keyframes orbit { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-        .animate-orbit { animation: orbit 8s linear infinite; }
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+
+        *{
+          font-family:'Inter',sans-serif;
+        }
+
+        .font-serif{
+          font-family:'Cinzel',serif;
+        }
       `}</style>
     </section>
   );

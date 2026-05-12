@@ -1,17 +1,17 @@
-const phone_number = "9121149465";
+const phone_number = "9731853767";
 const email = "";
-const whatsapp_number = "9121149465";
-const company_name = "Mahaveer Jyothish";
-const person_name = "Mahaveer Jyothish";
+const whatsapp_number = "9731853767";
+const company_name = "Kerala Durga Astro Center";
+const person_name = "Kerala Durga Astro Center";
 const address = {
-  line1: "4, jyothirgiri, chottanikkara",
-  line2: "6, bhagavathi street, chottanikkara",
-  state: "Kerala",
-  pincode: "682312",
-  District: "Ernakulam",
-  country: "India",
+  line1: "",
+  line2: "",
+  state: "",
+  pincode: "",
+  District: "",
+  country: "",
 };
-const website_url = "https://www.mahaveerjyothish.in/";
+const website_url = "https://www.keraladurgaastrocenter.in/";
 
 export {
   phone_number,
